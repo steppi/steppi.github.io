@@ -17,7 +17,8 @@ data analysis and biomedical text mining. I like to work with the [Python
 Scientific Computing Ecosystem](https://www.scipy.org/about.html). I try to
 take a principled approach to machine learning with an emphasis on validation,
 interpretability, data quality, and understanding of the limitations of
-algorithms in the context of the systems in which they participate.
+algorithms in the context of the systems in which they participate. You can
+find an up-to-date list of my publications on [Google Scholar](https://scholar.google.com/citations?user=_nbf9ZIAAAAJ&hl=en).
 
 Outside of my work, I am very interested in pure mathematics. In a past life
 I aspired to work at the intersection of combinatorics, algebra, and geometry
