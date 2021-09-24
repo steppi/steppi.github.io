@@ -196,7 +196,9 @@ This expression may look familiar if you've seen logistic regression before. The
 It was first derived in 1926 independently by both the Italian physicist [Enrico Fermi](https://en.wikipedia.org/wiki/Enrico_Fermi) and
 the British physicist [Paul Dirac](https://en.wikipedia.org/wiki/Paul_Dirac).
 
-You may not be entirely satisfied with the above derivation.
+You may not be entirely satisfied with the above derivation. We haven't really
+explained why we should expect this approach to yield the correct distribution.
+Your concerns may be the addressed by the following interpretation.
 
 Through a series of simplifications we see that the quantity we are maximizing satisifes the equivalence
 
@@ -215,7 +217,27 @@ for fixed $$N$$ and $$E$$, the above expression becomes
 $$-\sum_{i=1}^mp_i\log p_i + (1 - p_i)\log\left(1 - p_i\right)$$
 
 you may recognize this expression as the [Shannon entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory)) of a discrete probability
-distribution [[2]](#2).
+distribution.
+
+(If you've not yet read Claude Shannon's landmark paper
+*A Mathematical Theory of Communication*[[2]](#2), please read it.
+If you've read it before, perhaps read it again (I plan to shortly). You can
+find it online [here](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf). It is accessible to anyone capable of following this post
+and filled with important insights and deep wisdom.)
+
+We thus see that the Fermi-Dirac distribution is the distribution that
+maximizes the Shannon entropy under the constraints that the total number
+of particles $$N$$ and the total energy $$E$$ are fixed. By the
+[principle of maximum entropy](https://en.wikipedia.org/wiki/Principle_of_maximum_entropy), we see that the Fermi-Dirac distribution makes the fewest assumptions
+about the true distribution given the constraints that $$N$$ and $$E$$ are
+fixed at particular values. The Fermi-Dirac distribution thus has a theoretical
+elegance to it and its agreement with experiment may give one the
+(justified in my opinion) impression that statistical physics is rooted in
+profound truths about the world.
+
+
+
+
 
 ### References
 <a id="1">[1]</a>
