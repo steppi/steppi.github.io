@@ -235,8 +235,8 @@ elegance to it and its agreement with experiment may give one the
 (justified in my opinion) impression that statistical physics is rooted in
 profound truths about the world.
 
-
-
+The connection between Shannon entropy and statistical physics was first made
+by E.T. Jaynes[[3]](#3).
 
 
 ### References
@@ -245,3 +245,10 @@ Kim SC, Arun AS, Ahsen ME, Vogel R, Stolovitzky G. The Fermi-Dirac distribution 
 
 <a id="2">[2]</a>
 Shannon, C.E. (1948), A Mathematical Theory of Communication. Bell System Technical Journal, 27: 379-423. https://doi.org/10.1002/j.1538-7305.1948.tb01338.x
+
+<a id="3">[3]</a>
+E. T. Jaynes, Information theory and statistical mechanics. Phys. Rev. 106, 620–630
+(1957).
+
+<a id="4">[4]</a>
+Jaynes, E. T., & Bretthorst, G. L. (2003). Probability theory: The logic of science. Cambridge, UK: Cambridge University Press. 
