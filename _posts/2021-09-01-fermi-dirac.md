@@ -25,6 +25,11 @@ of the paper may be surprised to find that the end result is not that their
 research topic is less rich than they believe, but that logistic regression is a
 richer and more interesting method than they've imagined.
 
+The sections on statistical physics will likely appear to dwell too much
+on the basics for those already familiar with the subject and likewise for the
+sections on statisical machine learning. This was unfortunately difficult to avoid
+because my goal is that this post be accessible to people from both audiences.
+
 ### Review of Fermi-Dirac Statistics
 First let's give a brief introduction to the basics of [Fermi-Dirac statistics](https://en.wikipedia.org/wiki/Fermi%E2%80%93Dirac_statistics). I'll
 try to make the presentation accessible to those from a general mathematically
@@ -234,7 +239,7 @@ you may recognize this expression as the [Shannon entropy](https://en.wikipedia.
 distribution.
 
 (If you've not yet read Claude Shannon's landmark paper
-*A Mathematical Theory of Communication*[[5]](#5), please read it.
+*A Mathematical Theory of Communication* [[5]](#5), please read it.
 If you've read it before, perhaps read it again (I plan to shortly). You can
 find it online [here](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf). It is accessible to anyone capable of following this post
 and filled with important insights and deep wisdom.)
@@ -249,21 +254,90 @@ elegance to it and its agreement with experiment may give one the
 (justified in my opinion) impression that statistical physics is rooted in
 profound truths about the world.
 
-The connection between Shannon entropy and statistical physics was first made
-by [E.T. Jaynes](https://en.wikipedia.org/wiki/Edwin_Thompson_Jaynes)[[6]](#6)
+This direct connection between Shannon entropy and Boltzmann entropy was first made
+by [E.T. Jaynes](https://en.wikipedia.org/wiki/Edwin_Thompson_Jaynes) [[6]](#6)
 who developed an interpretation of statistical physics as an application of
 Bayesian inference and information theory. His posthumously published book
-[Probability theory: The logic of science](http://www.med.mcgill.ca/epidemiology/hanley/bios601/GaussianModel/JaynesProbabilityTheory.pdf)[[7]](#7) offers a
+[Probability theory: The logic of science](http://www.med.mcgill.ca/epidemiology/hanley/bios601/GaussianModel/JaynesProbabilityTheory.pdf) [[7]](#7) offers a
 fascinating look into his thought on the foundations of Bayesian probability and
 inference.
 
-### Fermi-Dirac statistics and binary classification
+### Review of binary classification
 
-OK, that was a lot of review material. Now let's discuss the connection that
-the authors of [[1]](#1) made between Fermi-Dirac statistics and binary
-classification. Let's give a quick formalism for the binary classification
-problem. 
+Now let's give a quick review of the binary classification
+problem. I think the best references for this sort of material are the book
+[The Elements of Statistical Learning](https://web.stanford.edu/~hastie/Papers/ESLII.pdf) by Hastie, Tibshirani, and Friedman [[8]](#8); and for those who use Python,
+the excellent [Sci-kit learn documentation](https://scikit-learn.org/stable/) [[9]](#9).
 
+Suppose we are given a set $$\mathbf{X}$$ consisting of points
+in a $$p$$ dimensional Euclidean space $$\mathbb{R}^p$$. An example of such
+points could be vectors consisting of pixel intensities from $$4000\times 4000$$
+grayscale images. In this case $$p = 4000\times 4000 = 16,000,000$$. There
+is an unknown function $$f: \mathbf{R}^p \rightarrow \left\{0, 1\right\}$$ 
+which maps $$\mathbf{x}$$ to an associated target $$y$$ that is either 0 or 1
+depending on whether $$\mathbf{x}$$ belongs to some class of interest. An
+example could be a function mapping $$4000\times 4000$$ pixel grayscale images
+to 1 if an image contains a cat and 0 if it does not. We then consider the
+following problem:
+
+Given a subset $$\mathcal{X}$$ consisting of $$n$$ points from $$\mathbf{X}$$
+along with a set of $$n$$ corresponding labels $$\mathbf{y}$$ for the
+points in $$\mathcal{X}$$, find a function $$\hat{f}: \mathbb{R}^p \rightarrow
+\mathbb{R}$$ from a family of functions 
+$$\mathcal{F}(\boldsymbol\alpha)$$ parametrized by  $$\boldsymbol\alpha \in
+\mathbb{R}^{k}$$ and a decision rule 
+$$\mathcal{r}:\mathbb{R} \rightarrow \left\{0, 1\right\}$$ such that
+the composition $$\mathcal{r} \circ \hat{f}: \mathbb{R}^p \rightarrow \left\{0, 1\right\}$$ closely approximates the unknown function $$f$$. For example, if
+given a collection of 2 million $$4000 \times 4000$$ pixel grayscale images,
+each labeled as to whether the image contains a cat, we are essentially trying to
+find a function that is able to identify whether any $$4000 \times 4000$$ pixel
+grayscale image contains a cat. The set $$\mathcal{X}$$ is referred to as the
+training data.
+
+A family of functions $$\mathcal{F}\left(\boldsymbol\alpha\right)$$, along with
+an algorithm which when given a set of training data attempts to find a good
+choice of $$\boldsymbol\alpha$$ to determine the function $$\hat{f}$$ is called
+a classification model. We say a classification model is fitting a function
+$$\hat{f}$$ based on the training data $$\mathcal{X}$$ and this process is called
+training. After fitting we say we have trained a classification model. Examples of classification models
+include [logistic regression](https://en.wikipedia.org/wiki/Logistic_regression),
+[decision trees](https://en.wikipedia.org/wiki/Decision_tree),
+[support vector machines](https://en.wikipedia.org/wiki/Support-vector_machine),
+[random forests](https://en.wikipedia.org/wiki/Random_forest),
+[gradient boosted tree ensembles](https://en.wikipedia.org/wiki/Gradient_boosting), and [neural networks](https://en.wikipedia.org/wiki/Artificial_neural_network).
+
+For some classification models such as logistic regression and random forests,
+the function $$\hat{f}$$ maps points in $$\mathbf{X}$$ to properly calibrated
+probabilities that the associated objects belong to the category of interest.
+Such methods can produce functions which when given an image return a
+probability that it contains a cat.If you were to look at many such images
+where the predicted probability is 0.65, you should expect that approximately 65%
+of them actually do contain a cat. The decision function $$\mathcal{r}$$ is
+then determined by choosing a probability threshold $$p$$ such that 
+$$\mathcal{r}(x) = 1$$ if $$x \geq p$$ and equals 0 otherwise.
+
+Other methods such as support vector machines and gradient boosted trees do
+not produce functions $$\hat{f}$$ that return calibrated probabilities.
+Gradient boosted trees models produce predicted values in the interval
+$$\left[0, 1\right]$$ but they tend to cluster at the tails, making predictions
+that either under or over estimate the true probabilities. A support vector
+machine identifies a hyperplane in $$\mathbb{R}^p$$ which separates points
+with label 1 from points in label 0. The function $$\hat{f}$$ gives the
+signed distance between a point and the hyperplane so the decision rule
+$$\mathcal{r}$$ identifies the side of the hyperplane on which a point lies.
+
+A natural problem is then: given a classification model
+which does not produce calibrated probability scores and a function $$\hat{f}$$
+fit by this model, to identify an additional function
+$$\mathcal{c}:\mathbb{R}\rightarrow [0, 1]$$ such that
+$$\mathcal{c} \circ \hat{f}: \mathbb{R}^p \rightarrow [0, 1]$$ produces
+correctly calibrated probabilities. Typically $$\mathcal{c}$$ is fit with
+another classification model which takes the scores returned by $$\hat{f}$$
+on a set of labeled points as its training data. This problem is known
+as the problem of probability calibration and it is the primary problem
+considered by the authors of [[1]](#1).
+
+### Probability calibration through Fermi-Dirac statistics
 
 ### References
 <a id="1">[1]</a>
@@ -278,12 +352,18 @@ Dirac, Paul A. M. (1926). "On the Theory of Quantum Mechanics". Proceedings of t
 <a id="4">[4]</a>
 Fermi, Enrico (1926). "Sulla quantizzazione del gas perfetto monoatomico". Rendiconti Lincei (in Italian). 3: 145–9., translated as Zannoni, Alberto (1999-12-14). "On the Quantization of the Monoatomic Ideal Gas". arXiv:cond-mat/9912229
 
-<a id="4">[5]</a>
+<a id="5">[5]</a>
 Shannon, C.E. (1948), A Mathematical Theory of Communication. Bell System Technical Journal, 27: 379-423. https://doi.org/10.1002/j.1538-7305.1948.tb01338.x
 
-<a id="5">[6]</a>
+<a id="6">[6]</a>
 E. T. Jaynes, Information theory and statistical mechanics. Phys. Rev. 106, 620–630
 (1957).
 
-<a id="6">[7]</a>
+<a id="7">[7]</a>
 Jaynes, E. T., & Bretthorst, G. L. (2003). Probability theory: The logic of science. Cambridge, UK: Cambridge University Press. 
+
+<a id="8">[8]</a>
+Hastie, T., Tibshirani, R., & Friedman, J. H. (2009). The elements of statistical learning: data mining, inference, and prediction. 2nd ed. New York: Springer.
+
+<a id="9">[9]</a>
+Scikit-learn: Machine Learning in Python, Pedregosa et al., JMLR 12, pp. 2825-2830, 2011.
