@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Demystifying a Surpising Relationship between Statistical Physics and Machine Learning."
+title:  "Demystifying a surpising relationship between statistical physics and machine learning"
 ---
 
 ### Introduction
@@ -67,7 +67,7 @@ and physics lurking behind this principle but it is outside the scope of this
 post. We will take it as given within the mathematical model.
 
 Fermi-Dirac statistics concerns the distribution of energy values for particles
-within a Fermi gas with known possible energy levels and degeneracies and
+within a Fermi gas with known possible energy levels and
 where the total number of particles $$N$$ and the total energy
 $$E$$ within the system are known. $$N$$ is assumed to be sufficiently large to
 allow for some simplifications that we will see shortly. The problem is to
@@ -75,15 +75,21 @@ determine the distribution $$\pi(\epsilon\left|N, E\right.)$$ describing the
 probability that a state $$s$$ is occupied given its associated energy level
 $$\epsilon$$ and with fixed $$N$$ and $$E$$.
 
-There are multiple ways to derive the correct distribution, the most relevant
-for this post relies on something called the **Max Entropy Principle**.
+There are multiple ways to derive the correct distribution. The most relevant
+for this post is based on an approach initiated by Austrian physicist
+[Ludwig Boltzmann](https://en.wikipedia.org/wiki/Ludwig_Boltzmann) and developed
+by American physicist [Josiah Willard Gibbs](https://en.wikipedia.org/wiki/Josiah_Willard_Gibbs) in the 19th 
+century [[2]](#2) and first applied to the problem of Fermi-Dirac statistics by the British
+physicist [Paul Dirac](https://en.wikipedia.org/wiki/Paul_Dirac) in 1926 [[3]](#3). The correct distribution was also derived independently by the
+Italian physicist [Enrico Fermi](https://en.wikipedia.org/wiki/Enrico_Fermi)
+in 1926 by a different method [[4]](#4).
 
 Suppose that any arrangement
 of $$N$$ total fermions among the 
 $$M = \sum_{i=1}^{m}g_i$$ states in $$\mathcal{S}$$ is equally likely.
-Given a random distribution of $$N$$ fermions among the $$M$$ states, what is the
-probability $$\pi(\mathbf{n})$$ that $$n_i$$ of the $$g_i$$ states at
-energy level $$\epsilon_i$$ are occupied, given a sequence of natural numbers
+Given a random distribution of $$N$$ fermions among the $$M$$ states, we ask:
+
+Given a sequence of natural numbers
 
 $$\mathbf{n} = \left(n_1, n_2, \ldots, n_m\right)$$
 
@@ -96,6 +102,11 @@ and
 $$0 <= n_i <= g_i$$
 
 for each $$i$$.
+
+what is the
+probability $$\pi(\mathbf{n})$$ that $$n_i$$ of the $$g_i$$ states at
+energy level $$\epsilon_i$$ are occupied for each $$i$$?
+
 
 The problem is in essence a simple combinatorial puzzle. The number of ways to
 distribute $$N$$ identical fermions among $$M$$ states is given by the [binomial
@@ -131,9 +142,9 @@ $$\log W\left(\mathbf{n}\right)$$ will be maximized for the same values of $$\ma
 The problem becomes to maximize
 
 $$\log W\left(\mathbf{n}\right) = \sum_{i=1}^{m}\log \binom{g_i}{n_i} = 
-\sum_{i=1}^{m}\log \frac{\Gamma(g_i + 1)}{\Gamma(n_i + 1)\Gamma(g_i - n_i + 1)} =$$
+\sum_{i=1}^{m}\log \frac{g_i!}{\Gamma(n_i + 1)\Gamma(g_i - n_i + 1)} =$$
 
-$$\sum_{i=1}^{m}\log \Gamma(g_i + 1) - \log \Gamma(n_i + 1) - \log \Gamma(g_i - n_i + 1)$$
+$$\sum_{i=1}^{m}\log g_i! - \log \Gamma(n_i + 1) - \log \Gamma(g_i - n_i + 1)$$
 
 subject to the constraints
 
@@ -144,7 +155,11 @@ of the factorial to real and complex values which is being used because $$n_i$$ 
 value, and thus the usual formula $$\binom{g_i}{n_i} = \frac{g_i!}{n_i!(g_i - n_i)!}$$ is not valid.
 For natural numbers $$n$$, $$n! = \Gamma(n+1)$$.
 
-Since $$\sum_{i=1}^{m}\log \Gamma(g_i + 1)$$ does not depend on $$\mathbf{n}$$, it suffices to maximize
+The quantity $$\log W(\mathbf{n})$$ is proprotional to a quantity known as
+the [Boltzmann entropy](https://en.wikipedia.org/wiki/Boltzmann%27s_entropy_formula) and the Fermi-Dirac distribution is the distribution that
+maximizes the Boltzmann entropy among all of those satisfying the constraints.
+
+Since $$\sum_{i=1}^{m}\log g_i!$$ does not depend on $$\mathbf{n}$$, it suffices to maximize
 
 $$-\sum_{i=1}^{m}\log\Gamma(n_i + 1) + \log\Gamma(g_i - n_i + 1)$$
 
@@ -154,7 +169,7 @@ The expression appears unwieldy but can be simplified
 with [Stirling's approximation](https://en.wikipedia.org/wiki/Stirling%27s_approximation)
 in the form
 
-$$\log\Gamma(x + 1) = x\log x - x + O\left(\log\left(1 + \frac{1}{x}\right)\right)$$
+$$\log\Gamma(x + 1) = x\log x - x + O\left(\log x\right)$$
 
 by replacing $$\log \Gamma$$ terms with Stirling's approximation, ignoring error terms,
 simplifying, and then ignoring terms that do not depend on $$\mathbf{n}$$ we end up
@@ -166,7 +181,7 @@ again subject to the constraints
 
 $$\sum_{i=1}^{m}n_i = N,\:\:\:\:\:\:\sum_{i=1}^{m}n_i\epsilon_i = E,\:\:\:\:0 \leq n_i \leq g_i$$
 
-As an aside, note that we haven't justified ignoring the error terms. It's common in physics
+(As an aside, note that we haven't justified ignoring the error terms. It's common in physics
 to treat error terms as negligible when deriving a mathematical model. There
 are often implicit assumptions baked into the treatment of certain terms as
 negligible. Agreement with experiment remains the ultimate test of physical
@@ -175,7 +190,7 @@ non-rigorously like a phycisist; one can cover more ground that way. A vital
 skill for a mathematician is then to be able to convert a loose argument into
 a rigorous one or otherwise to identify when obstructions make this
 difficult or impossible. See [here](https://terrytao.wordpress.com/career-advice/theres-more-to-mathematics-than-rigour-and-proofs/)
-for an excellent post on this matter by an immeasurably more skilled and knowledgeable mathematician.
+for an excellent post on this matter by an immeasurably more skilled and knowledgeable mathematician.)
 
 This constrained optimization problem can be solved by the method of [Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier).
 (Technically, since some of the constraints are inequalities, one actually applies the
@@ -191,14 +206,13 @@ that a state $$s$$ is occupied given its energy level and for fixed $$N$$ and $$
 
 $$\pi(\epsilon |N, E) = \frac{\hat{n_i}}{g_i} = \frac{1}{1 + e^{\alpha + \beta\epsilon_i}}$$
 
-This expression may look familiar if you've seen logistic regression before. The resulting probability distribution is known as the
+This expression may look familiar if you've seen logistic regression before. Observe that it has no dependence on the values of the individual $$g_i$$s.
+The resulting probability distribution is known as the
 [Fermi-Dirac distribution](https://en.wikipedia.org/wiki/Fermi%E2%80%93Dirac_statistics#Fermi%E2%80%93Dirac_distribution).
-It was first derived in 1926 independently by both the Italian physicist [Enrico Fermi](https://en.wikipedia.org/wiki/Enrico_Fermi) and
-the British physicist [Paul Dirac](https://en.wikipedia.org/wiki/Paul_Dirac).
 
 You may not be entirely satisfied with the above derivation. We haven't really
 explained why we should expect this approach to yield the correct distribution.
-Your concerns may be the addressed by the following interpretation.
+You may may be more satisfied by the following interpretation.
 
 Through a series of simplifications we see that the quantity we are maximizing satisifes the equivalence
 
@@ -211,7 +225,7 @@ maximizing it under the constraints is then equivalent to maximizing
 
 $$-\sum_{i=1}^m\frac{n_i}{g_i}\log\frac{n_i}{g_i} + (1 - \frac{n_i}{g_i})\log\left(1 - \frac{n_i}{g_i}\right)$$
 
-letting $$p_i = \frac{n_i}{g_i}$$ and interpreting $$p_i$$ to be the probability of that a state $$s$$ of energy level $$\epsilon_i$$ is occupied
+letting $$p_i = \frac{n_i}{g_i}$$ and interpreting $$p_i$$ to be the probability that a state $$s$$ of energy level $$\epsilon_i$$ is occupied
 for fixed $$N$$ and $$E$$, the above expression becomes
 
 $$-\sum_{i=1}^mp_i\log p_i + (1 - p_i)\log\left(1 - p_i\right)$$
@@ -220,7 +234,7 @@ you may recognize this expression as the [Shannon entropy](https://en.wikipedia.
 distribution.
 
 (If you've not yet read Claude Shannon's landmark paper
-*A Mathematical Theory of Communication*[[2]](#2), please read it.
+*A Mathematical Theory of Communication*[[5]](#5), please read it.
 If you've read it before, perhaps read it again (I plan to shortly). You can
 find it online [here](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf). It is accessible to anyone capable of following this post
 and filled with important insights and deep wisdom.)
@@ -236,7 +250,19 @@ elegance to it and its agreement with experiment may give one the
 profound truths about the world.
 
 The connection between Shannon entropy and statistical physics was first made
-by E.T. Jaynes[[3]](#3).
+by [E.T. Jaynes](https://en.wikipedia.org/wiki/Edwin_Thompson_Jaynes)[[6]](#6)
+who developed an interpretation of statistical physics as an application of
+Bayesian inference and information theory. His posthumously published book
+[Probability theory: The logic of science](http://www.med.mcgill.ca/epidemiology/hanley/bios601/GaussianModel/JaynesProbabilityTheory.pdf)[[7]](#7) offers a
+fascinating look into his thought on the foundations of Bayesian probability and
+inference.
+
+### Fermi-Dirac statistics and binary classification
+
+OK, that was a lot of review material. Now let's discuss the connection that
+the authors of [[1]](#1) made between Fermi-Dirac statistics and binary
+classification. Let's give a quick formalism for the binary classification
+problem. 
 
 
 ### References
@@ -244,11 +270,20 @@ by E.T. Jaynes[[3]](#3).
 Kim SC, Arun AS, Ahsen ME, Vogel R, Stolovitzky G. The Fermi-Dirac distribution provides a calibrated probabilistic output for binary classifiers. Proc Natl Acad Sci U S A. 2021 Aug 24;118(34):e2100761118. doi: 10.1073/pnas.2100761118. PMID: 34413191; PMCID: PMC8403970.
 
 <a id="2">[2]</a>
-Shannon, C.E. (1948), A Mathematical Theory of Communication. Bell System Technical Journal, 27: 379-423. https://doi.org/10.1002/j.1538-7305.1948.tb01338.x
+Gibbs, Josiah Willard (1902). Elementary Principles in Statistical Mechanics. New York: Charles Scribner's Sons.
 
 <a id="3">[3]</a>
+Dirac, Paul A. M. (1926). "On the Theory of Quantum Mechanics". Proceedings of the Royal Society A. 112 (762): 661–77. 
+
+<a id="4">[4]</a>
+Fermi, Enrico (1926). "Sulla quantizzazione del gas perfetto monoatomico". Rendiconti Lincei (in Italian). 3: 145–9., translated as Zannoni, Alberto (1999-12-14). "On the Quantization of the Monoatomic Ideal Gas". arXiv:cond-mat/9912229
+
+<a id="4">[5]</a>
+Shannon, C.E. (1948), A Mathematical Theory of Communication. Bell System Technical Journal, 27: 379-423. https://doi.org/10.1002/j.1538-7305.1948.tb01338.x
+
+<a id="5">[6]</a>
 E. T. Jaynes, Information theory and statistical mechanics. Phys. Rev. 106, 620–630
 (1957).
 
-<a id="4">[4]</a>
+<a id="6">[7]</a>
 Jaynes, E. T., & Bretthorst, G. L. (2003). Probability theory: The logic of science. Cambridge, UK: Cambridge University Press. 
