@@ -29,6 +29,7 @@ The sections on statistical physics will likely appear to dwell too much
 on the basics for those already familiar with the subject and likewise for the
 sections on statisical machine learning. This was unfortunately difficult to avoid
 because my goal is that this post be accessible to people from both audiences.
+Feel free to skim or skip through any passages that appear tedious to you.
 
 ### Review of Fermi-Dirac Statistics
 First let's give a brief introduction to the basics of [Fermi-Dirac statistics](https://en.wikipedia.org/wiki/Fermi%E2%80%93Dirac_statistics). I'll
@@ -310,7 +311,7 @@ For some classification models such as logistic regression and random forests,
 the function $$\hat{f}$$ maps points in $$\mathbf{X}$$ to properly calibrated
 probabilities that the associated objects belong to the category of interest.
 Such methods can produce functions which when given an image return a
-probability that it contains a cat.If you were to look at many such images
+probability that it contains a cat. If you were to look at many such images
 where the predicted probability is 0.65, you should expect that approximately 65%
 of them actually do contain a cat. The decision function $$\mathcal{r}$$ is
 then determined by choosing a probability threshold $$p$$ such that 
@@ -326,6 +327,14 @@ with label 1 from points in label 0. The function $$\hat{f}$$ gives the
 signed distance between a point and the hyperplane so the decision rule
 $$\mathcal{r}$$ identifies the side of the hyperplane on which a point lies.
 
+In either case, it is customary to arrange things such that if
+$$\hat{f}(x_1) > \hat{f}(x_2)$$, then the classifier
+believes $$x_1$$ is more likely to be in the class of interest
+(e.g. to be a picture of a cat)
+than $$x_2$$ and the decision rule $$\mathcal{r}$$ is based on a
+cutoff value $$x_0$$ such that $$\mathcal{r}(x) = 1$$ if $$x \geq x_0$$
+and equals 0 otherwise. From now on we will assume this to be the case.
+
 A natural problem is then: given a classification model
 which does not produce calibrated probability scores and a function $$\hat{f}$$
 fit by this model, to identify an additional function
@@ -338,6 +347,43 @@ as the problem of probability calibration and it is the primary problem
 considered by the authors of [[1]](#1).
 
 ### Probability calibration through Fermi-Dirac statistics
+
+The authors of [[1]](#1) consider a classification model $$\mathcal{M}$$
+which has been trained to produce a fitted function $$\hat{f}$$ which does not
+return calibrated probabilities. Given a set of labeled training data
+$$\mathcal{X}^{'}$$ with $$n$$ elements that is disjoint from the training data
+that was used to fit
+$$\hat{f}$$: to each point $$\mathbf{x} \in \mathcal{X}^{'}$$ they associate the
+score $$\hat{f}(\mathbf{x})$$. The scores are then sorted in order from highest
+to lowest. Scores corresponding to points which the classifier is more
+confident belong to the class of interest appear before points for which
+it is less confident.
+Scores are then
+replaced with their ranks within this sorted list, so that each point in
+$$\mathcal{X}^{'}$$ is mapped to a natural number between $$1$$ and $$n$$ such
+that if $$\mathbf{x}_i$$ is mapped to a lower number than $$\mathbf{x}_j$$, then
+the classifier is more confident that $$\mathbf{x}_i$$ belongs to the class of
+interest. The authors assume that ties are broken uniformly at random.
+
+The authors propose the following formal mapping onto the problem investigated
+through Fermi-Dirac statistics. Each rank is considered as the energy $$\epsilon$$
+of a state $$s$$ with degeneracy 1. A state is considered to be occupied by
+a fermion if the point $$x$$ of rank $$\epsilon$$ is classified by
+$$\mathcal{r} \circ \hat{f}$$ as 1; otherwise it is considered to be unoccupied.
+Since no two points can have the same rank, the Pauli exclusion principle is
+satisfied. The number of particles $$N$$ is the number of points in 
+$$\mathcal{X}^{'}$$ that were predicted to be 1 by 
+$$\mathcal{r} \circ \hat{f}$$. The total energy $$E$$ is given by
+
+$$E = \sum_{i=1}^{n}\left[\mathcal{r} \circ \hat{f}(\mathcal{x_i}) = 1\right]i$$
+
+where $$[\star]$$ is the [Iverson bracket notation](https://en.wikipedia.org/wiki/Iverson_bracket) defined by $$[\star] = 1$$ if $$\star$$ is true, otherwise
+$$[\star] = 0$$.
+
+
+
+
+
 
 ### References
 <a id="1">[1]</a>
