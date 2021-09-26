@@ -273,7 +273,9 @@ the excellent [Sci-kit learn documentation](https://scikit-learn.org/stable/) [[
 Suppose we are given a set $$\mathbf{X}$$ consisting of points
 in a $$p$$ dimensional Euclidean space $$\mathbb{R}^p$$. An example of such
 points could be vectors consisting of pixel intensities from $$4000\times 4000$$
-grayscale images. In this case $$p = 4000\times 4000 = 16,000,000$$. There
+grayscale images. In this case $$p = 4000\times 4000 = 16,000,000$$. (The
+individual coordinates of the vectors are often called features. We might
+say elements of the image dataset above have 16 million features.) There
 is an unknown function $$f: \mathbf{R}^p \rightarrow \left\{0, 1\right\}$$ 
 which maps $$\mathbf{x}$$ to an associated target $$y$$ that is either 0 or 1
 depending on whether $$\mathbf{x}$$ belongs to some class of interest. An
@@ -349,40 +351,140 @@ considered by the authors of [[1]](#1).
 ### Probability calibration through Fermi-Dirac statistics
 
 The authors of [[1]](#1) consider a classification model $$\mathcal{M}$$
-which has been trained to produce a fitted function $$\hat{f}$$ which does not
-return calibrated probabilities. Given a set of labeled training data
-$$\mathcal{X}^{'}$$ with $$n$$ elements that is disjoint from the training data
-that was used to fit
-$$\hat{f}$$: to each point $$\mathbf{x} \in \mathcal{X}^{'}$$ they associate the
+which has been trained to produce a fitted function $$\hat{f}$$ based on
+some training data and which does not return calibrated probabilities.
+
+
+Given a set of labeled training data $$\mathcal{X}_1$$ with $$n$$ elements
+that is disjoint from the training data that was used to fit $$\hat{f}$$:
+to each point $$\mathbf{x} \in \mathcal{X}_1$$ they associate the
 score $$\hat{f}(\mathbf{x})$$. The scores are then sorted in order from highest
 to lowest. Scores corresponding to points which the classifier is more
 confident belong to the class of interest appear before points for which
 it is less confident.
 Scores are then
 replaced with their ranks within this sorted list, so that each point in
-$$\mathcal{X}^{'}$$ is mapped to a natural number between $$1$$ and $$n$$ such
+$$\mathcal{X}_1$$ is mapped to a natural number between $$1$$ and $$n$$ such
 that if $$\mathbf{x}_i$$ is mapped to a lower number than $$\mathbf{x}_j$$, then
 the classifier is more confident that $$\mathbf{x}_i$$ belongs to the class of
 interest. The authors assume that ties are broken uniformly at random.
 
-The authors propose the following formal mapping onto the problem investigated
-through Fermi-Dirac statistics. Each rank is considered as the energy $$\epsilon$$
-of a state $$s$$ with degeneracy 1. A state is considered to be occupied by
-a fermion if the point $$x$$ of rank $$\epsilon$$ is classified by
-$$\mathcal{r} \circ \hat{f}$$ as 1; otherwise it is considered to be unoccupied.
-Since no two points can have the same rank, the Pauli exclusion principle is
-satisfied. The number of particles $$N$$ is the number of points in 
-$$\mathcal{X}^{'}$$ that were predicted to be 1 by 
-$$\mathcal{r} \circ \hat{f}$$. The total energy $$E$$ is given by
+If $$\mathcal{X} \subset \mathbf{X}$$, let $$N(\mathcal{X})$$ stand for the
+number of points in $$\mathcal{X}$$ with true label $$y = 1$$.
 
-$$E = \sum_{i=1}^{n}\left[\mathcal{r} \circ \hat{f}(\mathcal{x_i}) = 1\right]i$$
+The authors then envision a collection of $$g - 1$$ subsets taken through
+independent and identically distributed samples from the collection
+
+$$\mathcal{A} = \left\{\mathcal{X} \subset \mathbf{X}:\: |\mathcal{X}| = |\mathcal{X}_1| =  n \text{ and } N(\mathcal{X}) = N(\mathcal{X}_1 \right\}$$
+
+Call these subsets $$\mathcal{X}_2, \ldots, \mathcal{X}_{g}$$.
+
+To each $$\mathcal{X}_i$$, apply the same procedure that was applied to
+$$\mathcal{X}_1$$ to assign a rank between $$1$$ and $$n$$ to each
+$$\mathbf{x} \subset \mathcal{X_{i}}$$.
+
+The authors propose the following formal mapping onto the problem investigated
+through Fermi-Dirac statistics. Consider the [disjoint union](https://en.wikipedia.org/wiki/Disjoint_union)
+
+$$\mathcal{S} = \mathcal{X}_1 \sqcup \mathcal{X}_2 \sqcup \cdots \mathcal{X}_g$$
+
+Each $$s \in \mathcal{S}$$ is considered to be a possible state for a fermion.
+By construction each
+$$s \in \mathcal{S}$$ belongs to one and only one of the
+$$\mathcal{X}_i$$s. If $$s \in \mathcal{X}_i$$, the rank $$\epsilon$$ of $$s$$
+in $$\mathcal{X}_i$$ as calculated above is assigned to $$s$$ as its energy.
+
+The state $$s$$ is considered to be occupied by a fermion if the true label
+corresponding to the point $$s$$ is $$1$$ (e.g. grayscale images containing
+cats are occupied by fermions), otherwise the state is considered to be
+unoccupied. 
+
+Each state $$s$$ can be occupied by at most one fermion by construction and
+thus the Pauli exclusion principle holds. By construction, the degeneracy
+of each energy level is $$g$$.
+Each of the $$X_i$$s contains the same number of fermions $$N^{'}$$ and
+total number of fermions is $$N = N^{'}g$$.
+
+The total energy $$E$$ is equal to
+
+$$E = \sum_{s \in \mathcal{S}}\left[f(s) = 1\right]\operatorname{rank}(s)$$
 
 where $$[\star]$$ is the [Iverson bracket notation](https://en.wikipedia.org/wiki/Iverson_bracket) defined by $$[\star] = 1$$ if $$\star$$ is true, otherwise
-$$[\star] = 0$$.
+$$[\star] = 0$$. Recall that $$f$$ is the unknown function that maps each
+$$\mathbf{x} \in \mathbf{X}$$ to its true label $$y$$. $$\operatorname{rank}(s)$$
+is defined as the rank of $$s$$ in $$\mathcal{X}_i$$ for the unique (by
+construction) $$\mathcal{X}_i$$ such that $$s \in \mathcal{X}_i$$.
 
+If $$N$$ and $$E$$ are known, then the probability $$\pi(k| N, E)$$ that a
+datapoint s has true label 1 given that $$\operatorname{rank}(s) = k$$
+can be estimated by the Fermi-Dirac distribution. The authors stress that this
+is not necessarily the true probability that the true label is 1 given the rank,
+but is the distribution that makes the minimal number of assumptions given
+the constraints.
 
+In the construction above $$N$$ is known but $$E$$ is not. However, $$E$$ can
+be estimated based on the labeled dataset $$X_1$$ for which the energy *can*
+be calculated. If $$X_1$$ has total energy $$E^{'}$$, then the total energy
+$$E$$ can be estimated as $$E \approx E^{'}g$$. 
 
+Calibrated probability scores can then be computed through the formula
 
+$$\operatorname{Prob}\left[f(s) = 1\right] \approx \frac{1}{1 + e^{\alpha + \beta \operatorname{rank}(s)}}$$
+
+Note that $$\mathcal{X}_2, \ldots, \mathcal{X}_g$$ need only exist in thought
+and are included only to create a closer alignment with the presentation of
+Fermi-Dirac statistics given above. Calibrated probability scores for unseen
+datapoints
+$$\mathbf{x}$$ not in $$\mathcal{X}_1$$ can be computed by calculating
+$$x = \hat{f}(\mathbf{x})$$, situating it among the sorted scores from
+
+$$\mathrm{Scores} = \left\{\hat{f}(\mathbf{x}_i):\: \mathbf{x}_i \in \mathcal{X}_1\right\}$$
+
+and assigning it the rank of the nearest score in the set $$\mathrm{Scores}$$,
+perhaps making a determination to always assign the smaller rank if 
+$$\hat{f}(\mathbf{x})$$ is at the midpoint of two neighboring scores.
+
+Those who are familiar with logistic regression may feel something is a
+little suspicious. Haven't they just fit a logistic regression model using
+rank transformed features? Let's see what the authors have to say about it
+
+*Some methods, however, explicitly model the posterior probability of their
+classification, for example using logistic
+regression or Platt scaling methods (43), performing a logistic
+transformation of chosen features in the former or of a classifier score
+in the latter, into an output probability. While such
+transformations make intuitive sense and work well for some
+applications, they are heuristic methodologies. Our approach is
+different from the abovementioned methods on two counts: On
+the one hand, our logistic transformation transforms the ranks
+(not features or scores) assigned by a classifier to items in a test
+set into a probability; on the other hand, the logistic transformation
+is not postulated as an ad hoc transformation but results
+from the maximum-entropy principle and as such is the least-biased
+distribution given the information at hand. In other words,
+ours is the most parsimonious calibrated class distribution, and,
+in the absence of additional information, should be preferred to
+other methods.*
+
+OK, lets leave aside that [Platt scaling](https://en.wikipedia.org/wiki/Platt_scaling) is just another name for using logistic regression in this context.
+
+They've fit a function
+
+$$p(r) = \frac{1}{1 + e^{\alpha + \beta r}}$$
+
+mapping ranks to probabilities that has the same functional form as what would
+be produced by a logistic regression model. Are the parameters $$\alpha$$ and
+$$\beta$$ somehow different from the ones logistic regression would fit? Does
+this mean that logistic regression somehow produces parameters $$\alpha$$ and
+$$\beta$$ that are suboptimal because it is only a heuristic methodology
+while their method produces better parameters because it is the least biased
+distribution given the information at hand? Have statisticians really been
+doing it wrong for all these years? And it's really unfortunate that the
+reviewers let the grandiose passage quoted above through, because it turns
+out that logistic regression is actually characterized by producing the
+distribution that is the least-biased given the information at hand.
+
+### The Max Entropy classifier is Logistic Regression is the Max Entropy classifier
 
 
 ### References
