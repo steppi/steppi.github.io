@@ -466,9 +466,7 @@ ours is the most parsimonious calibrated class distribution, and,
 in the absence of additional information, should be preferred to
 other methods.*
 
-OK, lets leave aside that [Platt scaling](https://en.wikipedia.org/wiki/Platt_scaling) is just another name for using logistic regression in this context.
-
-They've fit a function
+OK, they've fit a function
 
 $$p(r) = \frac{1}{1 + e^{\alpha + \beta r}}$$
 
@@ -479,12 +477,26 @@ this mean that logistic regression somehow produces parameters $$\alpha$$ and
 $$\beta$$ that are suboptimal because it is only a heuristic methodology
 while their method produces better parameters because it is the least biased
 distribution given the information at hand? Have statisticians really been
-doing it wrong for all these years? And it's really unfortunate that the
-reviewers let the grandiose passage quoted above through, because it turns
+doing it wrong for all these years? Well... it's unfortunate that the
+reviewers let the passage quoted above through, because it turns
 out that logistic regression is actually characterized by producing the
 distribution that is the least-biased given the information at hand.
 
 ### The Max Entropy classifier is Logistic Regression is the Max Entropy classifier
+
+Wait, one may say: "I don't recall reading anything about logistic regression
+producing a maximum entropy distribution in *The Elements of Statistical
+Learning* nor in Agresti's monumental textbook *Categorical Data Analysis* 
+[[10]](#10) which contains hundreds of pages devoted to logistic regression
+and its applications."
+
+I would be astonished if the authors of these books were not aware of this fact
+about logistic regression. It's not entirely clear to me why no mention is made
+of it. The mathematical details are certainly not beyond the level of things
+that are presented in the first of these books. In any case, one can find
+a lucid exposition in a 1996 paper by Berger et al [[11]](#11) entitled
+*A Maximum Entropy Approach to Natural Language Processing*. There is a nice 2011 article by John Mount, which can be found on github
+[here](https://github.com/WinVector/Examples/blob/main/dfiles/LogisticRegressionMaxEnt.pdf) [[12]](#12) and from which I first learned the details of the equivalence.
 
 
 ### References
@@ -515,3 +527,12 @@ Hastie, T., Tibshirani, R., & Friedman, J. H. (2009). The elements of statistica
 
 <a id="9">[9]</a>
 Scikit-learn: Machine Learning in Python, Pedregosa et al., JMLR 12, pp. 2825-2830, 2011.
+
+<a id="10">[10]</a>
+Agresti, A. (2013) Categorical Data Analysis. 3rd Edition, John Wiley & Sons Inc., Hoboken. 
+
+<a id="11">[11]</a>
+T, Adam & Dellapietra, Vincent & Della Pietra, Stephen. (2002). A Maximum Entropy Approach to Natural Language Processing. Computational Linguistics. 22. 
+
+<a id="12">[12]</a>
+Mount, J. (2011). The equivalence of logistic regression and maximum entropy models. https://github.com/WinVector/Examples/blob/main/dfiles/LogisticRegressionMaxEnt.pdf
