@@ -290,7 +290,9 @@ point $$\mathbf{x}$$ may have different labels in different cases, perhaps
 dependent on some unobserved variables or due to inherent randomness.
 For the cat pictures example, it's somewhat sensible to
 say that $$f$$ is fixed. If one were to try to predict movement in the stock market
-from past movements, $$f$$ is anything but fixed.)
+from past movements, $$f$$ is anything but fixed. Restricting to the case of fixed
+$$f$$ simlifies the discussion in some places while doing no real harm to the
+generality of the results.)
 
 Given a subset $$\mathcal{X}$$ consisting of $$n$$ points from $$\mathbf{X}$$
 along with a set of $$n$$ corresponding labels $$\mathbf{y}$$ for the
@@ -655,7 +657,7 @@ I switched my interest to machine learning simply because it was an in demand
 field with career potential outside of the brutal competition for faculty jobs.
 I had some bad takes early on. I was skeptical of the potential of deep learning
 because it seemed ad-hoc and unprincipled. In just a short time I was proven
-very wrong. It took six years from when I first changed my focus before I
+very wrong. It took over six years from when I first changed my focus before I
 really felt I was becoming enough of an expert to develop novel and useful
 algorithms.
 
@@ -674,9 +676,11 @@ through discussion of a shared problem. Also, I had never considered the
 possibility of rank transforming the features before Platt scaling and the authors
 make some compelling arguments for it. Like most techniques it will probably
 be beneficial in some cases and harmful in others with empirical performance 
-being the final judge, but it's an interesting tool to keep in mind. Judgement:
-The paper is thought provoking in its own right regardless of whether the methods
-are novel and it is still worth a read.
+being the final judge, but it's an interesting tool to keep in mind.
+
+**Judgement:**
+*The paper is thought provoking in its own right regardless of whether the methods
+are novel and is worth a read.*
 
 
 ### References
