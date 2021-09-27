@@ -275,13 +275,22 @@ in a $$p$$ dimensional Euclidean space $$\mathbb{R}^p$$. An example of such
 points could be vectors consisting of pixel intensities from $$4000\times 4000$$
 grayscale images. In this case $$p = 4000\times 4000 = 16,000,000$$. (The
 individual coordinates of the vectors are often called features. We might
-say elements of the image dataset above have 16 million features.) There
+say elements of the image dataset above each have 16 million features.) There
 is an unknown function $$f: \mathbf{R}^p \rightarrow \left\{0, 1\right\}$$ 
 which maps $$\mathbf{x}$$ to an associated target $$y$$ that is either 0 or 1
 depending on whether $$\mathbf{x}$$ belongs to some class of interest. An
 example could be a function mapping $$4000\times 4000$$ pixel grayscale images
 to 1 if an image contains a cat and 0 if it does not. We then consider the
 following problem:
+
+(Note that we are only discussing a special case of the classification
+problem where there is a fixed but unknown function $$f$$. Often it's actually
+the case that there is uncertainty in the output of $$f$$, so that the same
+point $$\mathbf{x}$$ may have different labels in different cases, perhaps
+dependent on some unobserved variables or due to inherent randomness.
+For the cat pictures example, it's somewhat sensible to
+say that $$f$$ is fixed. If one were to try to predict movement in the stock market
+from past movements, $$f$$ is anything but fixed.)
 
 Given a subset $$\mathcal{X}$$ consisting of $$n$$ points from $$\mathbf{X}$$
 along with a set of $$n$$ corresponding labels $$\mathbf{y}$$ for the
@@ -299,7 +308,7 @@ training data.
 
 A family of functions $$\mathcal{F}\left(\boldsymbol\alpha\right)$$, along with
 an algorithm which when given a set of training data attempts to find a good
-choice of $$\boldsymbol\alpha$$ to determine the function $$\hat{f}$$ is called
+choice of $$\boldsymbol\alpha$$ to determine the function $$\hat{f}$$, is called
 a classification model. We say a classification model is fitting a function
 $$\hat{f}$$ based on the training data $$\mathcal{X}$$ and this process is called
 training. After fitting we say we have trained a classification model. Examples of classification models
@@ -314,10 +323,11 @@ the function $$\hat{f}$$ maps points in $$\mathbf{X}$$ to properly calibrated
 probabilities that the associated objects belong to the category of interest.
 Such methods can produce functions which when given an image return a
 probability that it contains a cat. If you were to look at many such images
-where the predicted probability is 0.65, you should expect that approximately 65%
+where the predicted probability is $$0.65$$, you should expect that approximately
+65%
 of them actually do contain a cat. The decision function $$\mathcal{r}$$ is
 then determined by choosing a probability threshold $$p$$ such that 
-$$\mathcal{r}(x) = 1$$ if $$x \geq p$$ and equals 0 otherwise.
+$$\mathcal{r}(x) = 1$$ if $$x \geq p$$ and equals $$0$$ otherwise.
 
 Other methods such as support vector machines and gradient boosted trees do
 not produce functions $$\hat{f}$$ that return calibrated probabilities.
@@ -325,7 +335,7 @@ Gradient boosted trees models produce predicted values in the interval
 $$\left[0, 1\right]$$ but they tend to cluster at the tails, making predictions
 that either under or over estimate the true probabilities. A support vector
 machine identifies a hyperplane in $$\mathbb{R}^p$$ which separates points
-with label 1 from points in label 0. The function $$\hat{f}$$ gives the
+with label $$1$$ from points with label $$0$$. The function $$\hat{f}$$ gives the
 signed distance between a point and the hyperplane so the decision rule
 $$\mathcal{r}$$ identifies the side of the hyperplane on which a point lies.
 
@@ -351,15 +361,14 @@ considered by the authors of [[1]](#1).
 ### Probability calibration through Fermi-Dirac statistics
 
 The authors of [[1]](#1) consider a classification model $$\mathcal{M}$$
-which has been trained to produce a fitted function $$\hat{f}$$ based on
-some training data and which does not return calibrated probabilities.
-
+which has fit a function $$\hat{f}$$ which does not return calibrated
+probabilities.
 
 Given a set of labeled training data $$\mathcal{X}_1$$ with $$n$$ elements
-that is disjoint from the training data that was used to fit $$\hat{f}$$:
+and that is disjoint from the training data that was used to fit $$\hat{f}$$,
 to each point $$\mathbf{x} \in \mathcal{X}_1$$ they associate the
 score $$\hat{f}(\mathbf{x})$$. The scores are then sorted in order from highest
-to lowest. Scores corresponding to points which the classifier is more
+to lowest. Scores corresponding to points for which the classifier is more
 confident belong to the class of interest appear before points for which
 it is less confident.
 Scores are then
@@ -375,7 +384,7 @@ number of points in $$\mathcal{X}$$ with true label $$y = 1$$.
 The authors then envision a collection of $$g - 1$$ subsets taken through
 independent and identically distributed samples from the collection
 
-$$\mathcal{A} = \left\{\mathcal{X} \subset \mathbf{X}:\: |\mathcal{X}| = |\mathcal{X}_1| =  n \text{ and } N(\mathcal{X}) = N(\mathcal{X}_1 \right\}$$
+$$\mathcal{A} = \left\{\mathcal{X} \subset \mathbf{X}:\: |\mathcal{X}| = |\mathcal{X}_1| =  n \text{ and } N(\mathcal{X}) = N(\mathcal{X}_1) \right\}$$
 
 Call these subsets $$\mathcal{X}_2, \ldots, \mathcal{X}_{g}$$.
 
@@ -423,7 +432,7 @@ but is the distribution that makes the minimal number of assumptions given
 the constraints.
 
 In the construction above $$N$$ is known but $$E$$ is not. However, $$E$$ can
-be estimated based on the labeled dataset $$X_1$$ for which the energy *can*
+be estimated based on the labeled dataset $$X_1$$, for which the energy *can*
 be calculated. If $$X_1$$ has total energy $$E^{'}$$, then the total energy
 $$E$$ can be estimated as $$E \approx E^{'}g$$. 
 
@@ -491,12 +500,183 @@ Learning* nor in Agresti's monumental textbook *Categorical Data Analysis*
 and its applications."
 
 I would be astonished if the authors of these books were not aware of this fact
-about logistic regression. It's not entirely clear to me why no mention is made
+about logistic regression. It's not entirely clear why no mention is made
 of it. The mathematical details are certainly not beyond the level of things
-that are presented in the first of these books. In any case, one can find
+that are presented in the first of these books. Each book is already quite
+long, but I think it could at least have merited an exercise.
+
+
+In any case, one can find
 a lucid exposition in a 1996 paper by Berger et al [[11]](#11) entitled
 *A Maximum Entropy Approach to Natural Language Processing*. There is a nice 2011 article by John Mount, which can be found on github
-[here](https://github.com/WinVector/Examples/blob/main/dfiles/LogisticRegressionMaxEnt.pdf) [[12]](#12) and from which I first learned the details of the equivalence.
+[here](https://github.com/WinVector/Examples/blob/main/dfiles/LogisticRegressionMaxEnt.pdf) [[12]](#12) and from which I first learned the details of this equivalence.
+
+Suppose we have a labled dataset $$\mathcal{X}$$ with elements from a larger
+set of mostly unlabled data $$\mathbf{X} \subset \mathbb{R}^p$$. We seek a function
+$$\pi:\:\mathbf{X}\rightarrow [0, 1]$$ such that $$\pi(\mathbf{x})$$ gives
+an estimate that the true label corresponding to $$\mathbf{x} \in \mathbf{X}$$
+is 1 for any $$\mathbf{x} \in \mathbf{X}$$.
+
+Following either of the references from this section, one can show that
+logistic regression can be derived by considering $$\pi$$ satisfying
+the following constraints
+
+$$0 \leq \pi(x) \leq 1,\:\: \forall \mathbf{x} \in \mathbf{X}$$
+
+$$\sum_{\mathbf{x} \in \mathcal{X}}\pi(\mathbf{x})x_i = 
+\sum_{\mathbf{x} \in \mathcal{X}}[f(\mathbf{x}) = 1]x_i,\:\: i = 1\ldots p$$ 
+
+where $$x_i$$ denotes the ith coordinate of $$\mathbf{x}$$.
+
+(The first constraint ensures that $$\pi$$ produces valid probabilities.
+The second asks that in each coordinate, $$\pi$$ ...)
+
+From all functions $$\pi$$ satisfying the constraints, one chooses that
+which maximizes the Shannon entropy
+
+$$H(\pi, \mathcal{X}) = -\sum_{\mathbf{x} \in \mathcal{X}}\pi(\mathbf{x})\log(\pi(\mathbf{x})) + (1 - \pi(\mathbf{x}))\log(1 - \pi(\mathbf{x}))$$
+
+Note that when $$p=1$$ these are equivalent conditions to those we used
+to derive the Fermi-Dirac distribution. The fitted function is thus exactly
+the same.
+
+Now consider the standard method of deriving logistic regression, let's work
+in the case where $$p = 1$$ for simplicity. One assumes that $$\pi(x)$$
+follows the functional form
+
+$$\pi(x) = \frac{1}{1 + e^{\alpha + \beta x}}$$
+
+and from there one attempts to maximize the log-likelihood
+
+$$\mathcal{L}(\mathcal{X}| \alpha, \beta) = \sum_{x \in \mathcal{X}} [f(x) = 1]\log \pi(x) + [f(x) = 0]\log(1 - \pi(x)) =$$
+
+$$-\sum_{x \in \mathcal{X}}[f(x) = 1]\log(1 + e^{\alpha + \beta x}) + [f(x) = 0]\log(1 + e^{-\alpha - \beta x})$$
+
+(The signs of $$\alpha$$ and $$\beta$$ have been flipped from the standard
+presentation of logistic regression in order to make things more closely
+match the presentation of Fermi-Dirac statistics given above.)
+
+This is an unconstrained optimization problem, we proceed by finding values
+$$\alpha$$ and $$\beta$$ for which the gradient of $$\mathcal{L}$$ equals $$0$$.
+
+Through some simplifications we find
+
+$$\frac{\partial\mathcal{L}}{\partial\alpha} = -\sum_{x \in \mathcal{X}} (1 - \pi(x))\left[f(x) = 1\right] + \pi(x)[f(x) = 0]$$
+
+$$\frac{\partial\mathcal{L}}{\partial\beta} = -\sum_{x \in \mathcal{X}} x(1 - \pi(x))\left[f(x) = 1\right] + x\pi(x)[f(x) = 0]$$
+
+from which it's possible to derive the constraint
+
+$$\sum_{x \in \mathcal{X}}\pi(x)x = 
+\sum_{x \in \mathcal{X}}[f(x) = 1]x$$ 
+
+By working through the equations for each method, one can see that the standard
+method produces the same $$\alpha$$ and $$\beta$$ as the max entropy method.
+
+OK, so it turns out that the authors do seem to be fitting a logistic regression
+of some kind. But
+what of their claim that their method differs from logistic regression because
+"our logistic transformation transforms the ranks (not features or scores)
+assigned by a classifier to items in a test set into a probability"?
+
+I admit that in all of the occasions I've reached for Platt scaling, I never
+considered whether it might be beneficial to rank transform the predicted
+scores before fitting logistic regression. This doesn't mean they are
+not fitting a logistic regression though, it only means they are applying a
+feature transform. A crude version could be implemented in Python with numpy
+and Scikit-learn like this
+
+
+```python
+import numpy as np
+from sklearn.base import BaseEstimator
+from sklearn.base import TransformerMixin
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+
+
+class RankTransformer(BaseEstimator, TransformerMixin):
+    """Apply rank transform to features
+
+    Warning: not production ready
+    """
+    def fit(self, X, y=None):
+        self.train_sorted = np.sort(X, axis=0)
+        return self
+
+    def transform(self, X, y=None):
+        n, p = X.shape
+        assert p == self.train_sorted.shape[1]
+        ranks = np.hstack(
+            [
+                np.searchsorted(self.train_sorted[:, i], X[:, i]).reshape(n, 1)
+                for i in range(p)
+            ]
+        )
+        return ranks + 1
+```
+
+Implementing a Fermi-Dirac classifier is then as simple as
+
+```python
+fermi_dirac_classifier = Pipeline(
+    [
+        ('rank_transform', RankTransformer()),
+        ('logit', LogisticRegression(penalty=None, solver="newton-cg"))
+    ]
+)
+```
+
+The authors go on to discuss a method they call FiDEL which amounts to
+the method of pooling predictions made by different classifiers by taking the
+geometric mean of the odds ratios they produce. A discussion of the merits of
+this method in comparison to others can be found in a highly relevant paper by
+Satopää et al[[13]](#13). In the case of FiDEL, the calibrated probability
+scores produced from different classifiers through a Fermi-Dirac statistics
+inspired logistic regression method are combined in this way.
+
+## Conclusion
+
+OK, so how does this happen? Why were a group of physicists who are obviously
+skilled and mathematically competent unable to detect that they'd
+rediscovered known methods? How is it that none of the reviewers
+for their PNAS paper were able to point this out to them? I think part of
+the answer lies in how vast the sphere of human knowledge really is. It is
+beyond anyone to keep up with the details of more than small portions of it.
+Research communities focus on their particular sets of problems and
+communication between different research communities is often weak to
+non-existent. This is not out of laziness, incompetance, or  malevolence, but
+because the difficulty of such communication tests our limits. Just keeping
+on top of ones own field and publishing consistently is challenging enough.
+
+Transitioning from one research field to another is difficult. Over ten years
+ago I had a promising math career derailed due to health issues. As I recovered,
+I switched my interest to machine learning simply because it was an in demand
+field with career potential outside of the brutal competition for faculty jobs.
+I had some bad takes early on. I was skeptical of the potential of deep learning
+because it seemed ad-hoc and unprincipled. In just a short time I was proven
+very wrong. It took six years from when I first changed my focus before I
+really felt I was becoming enough of an expert to develop novel and useful
+algorithms.
+
+Had I been asked to review this paper, I would not have made the decision to
+reject. Certainly I would have asked for major revisions, but I think that
+ultimately this is worthwhile work. I would have pointed out that they were
+in fact fitting a logistic regression model and basically made them aware of
+all of the contents of this post. I would have asked them to rewrite the paper
+with this awareness in mind; to rewrite it as a discussion of the connections
+between statistical physics and logistic regression offering a means to
+bring physical intuition to binary classification problems.
+The paper could have been a bridge between the statistical physics and
+statistical machine
+learning communities, allowing practioners of each field insight into the other
+through discussion of a shared problem. Also, I had never considered the
+possibility of rank transforming the features before Platt scaling and the authors
+make some compelling arguments for it. Like most techniques it will probably
+be beneficial in some cases and harmful in others with empirical performance 
+being the final judge, but it's an interesting tool to keep in mind. Judgement:
+The paper is thought provoking in its own right regardless of whether the methods
+are novel and it is still worth a read.
 
 
 ### References
@@ -536,3 +716,9 @@ T, Adam & Dellapietra, Vincent & Della Pietra, Stephen. (2002). A Maximum Entrop
 
 <a id="12">[12]</a>
 Mount, J. (2011). The equivalence of logistic regression and maximum entropy models. https://github.com/WinVector/Examples/blob/main/dfiles/LogisticRegressionMaxEnt.pdf
+
+<a id="13">[13]</a>
+Wolpert, D. (1992). Stacked generalization. Neural Networks, Volume 5, Issue 2, Pages 241-259, ISSN 0893-6080, https://doi.org/10.1016/S0893-6080(05)80023-1.
+
+<a id="14">[14]</a>
+Satopää, Ville & Baron, Jonathan & Foster, Dean & Mellers, Barbara & Tetlock, Philip & Ungar, Lyle. (2014). Combining multiple probability predictions using a simple logit model. International Journal of Forecasting. 30. 344–356. 10.1016/j.ijforecast.2013.09.009. 
