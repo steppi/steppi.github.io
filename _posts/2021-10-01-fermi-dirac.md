@@ -283,17 +283,6 @@ example could be a function mapping $$4000\times 4000$$ pixel grayscale images
 to 1 if an image contains a cat and 0 if it does not. We then consider the
 following problem:
 
-(Note that we are only discussing a special case of the classification
-problem where there is a fixed but unknown function $$f$$. Often it's actually
-the case that there is uncertainty in the output of $$f$$, so that the same
-point $$\mathbf{x}$$ may have different labels in different cases, perhaps
-dependent on some unobserved variables or due to inherent randomness.
-For the cat pictures example, it's somewhat sensible to
-say that $$f$$ is fixed. If one were to try to predict movement in the stock market
-from past movements, $$f$$ is anything but fixed. Restricting to the case of fixed
-$$f$$ simlifies the discussion in some places while doing no real harm to the
-generality of the results.)
-
 Given a subset $$\mathcal{X}$$ consisting of $$n$$ points from $$\mathbf{X}$$
 along with a set of $$n$$ corresponding labels $$\mathbf{y}$$ for the
 points in $$\mathcal{X}$$, find a function $$\hat{f}: \mathbb{R}^p \rightarrow
@@ -307,6 +296,17 @@ each labeled as to whether the image contains a cat, we are essentially trying t
 find a function that is able to identify whether any $$4000 \times 4000$$ pixel
 grayscale image contains a cat. The set $$\mathcal{X}$$ is referred to as the
 training data.
+
+(Note that we are only discussing a special case of the classification
+problem where there is a fixed but unknown function $$f$$. Often it's actually
+the case that there is uncertainty in the output of $$f$$, so that the same
+point $$\mathbf{x}$$ may have different labels in different cases, perhaps
+dependent on some unobserved variables or due to inherent randomness.
+For the cat pictures example, it's somewhat sensible to
+say that $$f$$ is fixed. If one were to try to predict movement in the stock market
+from past movements, $$f$$ is anything but fixed. Restricting to the case of fixed
+$$f$$ simlifies the discussion in some places while doing no real harm to the
+generality of the results.)
 
 A family of functions $$\mathcal{F}\left(\boldsymbol\alpha\right)$$, along with
 an algorithm which when given a set of training data attempts to find a good
@@ -531,7 +531,10 @@ $$\sum_{\mathbf{x} \in \mathcal{X}}\pi(\mathbf{x})x_i =
 where $$x_i$$ denotes the ith coordinate of $$\mathbf{x}$$.
 
 (The first constraint ensures that $$\pi$$ produces valid probabilities.
-The second asks that in each coordinate, $$\pi$$ ...)
+The second asks that the sum in each particular coordinate over all values
+in the training data with label $$1$$ is equal to the expected sum over that
+coordinate under the distribution $$\pi$$).
+
 
 From all functions $$\pi$$ satisfying the constraints, one chooses that
 which maximizes the Shannon entropy
