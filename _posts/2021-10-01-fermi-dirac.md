@@ -638,7 +638,7 @@ the method of pooling probabilities predicted by different methods by taking the
 geometric mean of the resulting odds ratios. A discussion of the merits of
 this method in comparison to others can be found in a highly relevant paper by
 Satopää et al[[13]](#13). In the case of FiDEL, the scores output by different
-classifiers are converted to calibrated probabilities through the authors
+classifiers are converted to calibrated probabilities through the author's
 physics inspired variant of Platt scaling, and then combined in this way.
 
 
