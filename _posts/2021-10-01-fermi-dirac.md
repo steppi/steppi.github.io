@@ -724,7 +724,7 @@ Scikit-learn: Machine Learning in Python, Pedregosa et al., JMLR 12, pp. 2825-28
 Agresti, A. (2013) Categorical Data Analysis. 3rd Edition, John Wiley & Sons Inc., Hoboken. 
 
 <a id="11">[11]</a>
-T, Adam & Dellapietra, Vincent & Della Pietra, Stephen. (2002). A Maximum Entropy Approach to Natural Language Processing. Computational Linguistics. 22. 
+Adam L. Berger, Vincent J. Della Pietra, and Stephen A. Della Pietra. 1996. A maximum entropy approach to natural language processing. Comput. Linguist. 22, 1 (March 1996), 39–71.
 
 <a id="12">[12]</a>
 Mount, J. (2011). The equivalence of logistic regression and maximum entropy models. https://github.com/WinVector/Examples/blob/main/dfiles/LogisticRegressionMaxEnt.pdf
