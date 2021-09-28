@@ -306,7 +306,7 @@ dependent on some unobserved variables or due to inherent randomness.
 For the cat pictures example, it's somewhat sensible to
 say that $$f$$ is fixed. If one were to try to predict movement in the stock market
 from past movements, $$f$$ is anything but fixed. Restricting to the case of fixed
-$$f$$ simlifies the discussion in some places while doing no real harm to the
+$$f$$ simplifies the discussion in some places while doing no real harm to the
 generality of the results.)
 
 A family of functions $$\mathcal{F}\left(\boldsymbol\alpha\right)$$, along with
