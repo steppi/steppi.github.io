@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Demystifying a surprising relationship between statistical physics and machine learning"
+title:  "On a surprising relationship between statistical physics and machine learning"
 published: true
 ---
 
@@ -21,7 +21,7 @@ The authors are in fact discussing applications of the venerable method known
 as [logistic regression](https://en.wikipedia.org/wiki/Logistic_regression).
 The authors claim that their method is
 distinct from logistic regression but they are mistaken. Let's trace through
-the paper with a view to demystifying this surprising connection. The authors
+the paper with a view to understanding this surprising connection. The authors
 of the paper may be surprised to find that the end result is not that their
 research topic is less rich than they believe, but that logistic regression is a
 richer and more interesting method than they've imagined.
