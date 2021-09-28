@@ -652,7 +652,7 @@ the answer lies in how vast the sphere of human knowledge really is. It is
 beyond anyone to keep up with the details of more than small portions of it.
 Research communities focus on their particular sets of problems and
 communication between different research communities is often weak to
-non-existent. This is not out of laziness, incompetance, or  malevolence, but
+non-existent. This is not out of laziness, incompetence, or  malevolence, but
 because the difficulty of such communication tests our limits. Just keeping
 on top of ones own field and publishing consistently is challenging enough.
 How to properly review cross-disciplinary research is a difficult problem.
