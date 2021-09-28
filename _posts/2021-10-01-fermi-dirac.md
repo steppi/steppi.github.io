@@ -562,7 +562,7 @@ $$-\sum_{x \in \mathcal{X}}[f(x) = 1]\log(1 + e^{\alpha + \beta x}) + [f(x) = 0]
 presentation of logistic regression in order to make things more closely
 match the presentation of Fermi-Dirac statistics given above.)
 
-This is an unconstrained optimization problem, we proceed by finding values
+This is an unconstrained optimization problem, we thus proceed by finding values
 $$\alpha$$ and $$\beta$$ for which the gradient of $$\mathcal{L}$$ equals $$0$$.
 
 Through some simplifications we find
