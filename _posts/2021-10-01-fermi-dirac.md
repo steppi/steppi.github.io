@@ -389,13 +389,15 @@ independent and identically distributed samples from the collection
 
 $$\mathcal{A} = \left\{\mathcal{X} \subset \mathbf{X}:\: |\mathcal{X}| = |\mathcal{X}_1| =  n \text{ and } N(\mathcal{X}) = N(\mathcal{X}_1) \right\}$$
 
+($$\mathcal{X}_1$$ is also assumed to have been drawn iid from the same distribution.)
+
 Call these subsets $$\mathcal{X}_2, \ldots, \mathcal{X}_{g}$$.
 
 To each $$\mathcal{X}_i$$, apply the same procedure that was applied to
 $$\mathcal{X}_1$$ to assign a rank between $$1$$ and $$n$$ to each
 $$\mathbf{x} \subset \mathcal{X_{i}}$$.
 
-The authors propose the following formal mapping onto the problem investigated
+My understanding is that the authors propose the following formal mapping onto the problem investigated
 through Fermi-Dirac statistics. Consider the [disjoint union](https://en.wikipedia.org/wiki/Disjoint_union)
 
 $$\mathcal{S} = \mathcal{X}_1 \sqcup \mathcal{X}_2 \sqcup \cdots \mathcal{X}_g$$
