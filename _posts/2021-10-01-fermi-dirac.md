@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Demystifying a surpising relationship between statistical physics and machine learning"
+published: true
 ---
 
 ### Introduction
