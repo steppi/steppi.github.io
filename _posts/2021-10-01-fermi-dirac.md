@@ -668,8 +668,8 @@ very wrong. It took over six years from when I changed focus before I
 felt capable of developing novel and useful algorithms.
 
 Had I been asked to review this paper, I would not have made the decision to
-reject. Certainly I would have asked for major revisions, but I think that
-ultimately this is worthwhile work. I would have pointed out that they were
+reject. Certainly I would have asked for major revisions, but ultimately
+I think this is worthwhile work. I would have pointed out that they were
 in fact fitting a logistic regression model and basically made them aware of
 all of the contents of this post. I would have asked them to rewrite the paper
 with this awareness in mind; to rewrite it as a discussion of the connections
