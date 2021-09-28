@@ -633,12 +633,13 @@ fermi_dirac_classifier = Pipeline(
 ```
 
 The authors go on to discuss a method they call FiDEL which amounts to
-the method of pooling predictions made by different classifiers by taking the
-geometric mean of the odds ratios they produce. A discussion of the merits of
+the method of pooling probabilities predicted by different methods by taking the
+geometric mean of the resulting odds ratios. A discussion of the merits of
 this method in comparison to others can be found in a highly relevant paper by
-Satopää et al[[13]](#13). In the case of FiDEL, the calibrated probability
-scores produced from different classifiers through a Fermi-Dirac statistics
-inspired logistic regression method are combined in this way.
+Satopää et al[[13]](#13). In the case of FiDEL, the scores output by different
+classifiers are converted to calibrated probabilities through the authors
+physics inspired variant of Platt scaling, and then combined in this way.
+
 
 ## Conclusion
 
@@ -653,16 +654,17 @@ communication between different research communities is often weak to
 non-existent. This is not out of laziness, incompetance, or  malevolence, but
 because the difficulty of such communication tests our limits. Just keeping
 on top of ones own field and publishing consistently is challenging enough.
+How to properly review cross-disciplinary research is a difficult problem.
 
 Transitioning from one research field to another is difficult. Over ten years
-ago I had a promising math career derailed due to health issues. As I recovered,
-I switched my interest to machine learning simply because it was an in demand
-field with career potential outside of the brutal competition for faculty jobs.
-I had some bad takes early on. I was skeptical of the potential of deep learning
+ago my goal of having a pure math career was upended due to health issues. As
+I recovered, my interests switched to machine learning simply because it was an
+in demand field with career potential outside of the brutal competition for
+faculty jobs. I had some bad takes early on. I was skeptical of the potential
+of deep learning
 because it seemed ad-hoc and unprincipled. In just a short time I was proven
-very wrong. It took over six years from when I first changed my focus before I
-really felt I was becoming enough of an expert to develop novel and useful
-algorithms.
+very wrong. It took over six years from when I changed focus before I
+felt capable of developing novel and useful algorithms.
 
 Had I been asked to review this paper, I would not have made the decision to
 reject. Certainly I would have asked for major revisions, but I think that
