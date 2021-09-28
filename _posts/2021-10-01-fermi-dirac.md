@@ -730,7 +730,4 @@ T, Adam & Dellapietra, Vincent & Della Pietra, Stephen. (2002). A Maximum Entrop
 Mount, J. (2011). The equivalence of logistic regression and maximum entropy models. https://github.com/WinVector/Examples/blob/main/dfiles/LogisticRegressionMaxEnt.pdf
 
 <a id="13">[13]</a>
-Wolpert, D. (1992). Stacked generalization. Neural Networks, Volume 5, Issue 2, Pages 241-259, ISSN 0893-6080, https://doi.org/10.1016/S0893-6080(05)80023-1.
-
-<a id="14">[14]</a>
 Satopää, Ville & Baron, Jonathan & Foster, Dean & Mellers, Barbara & Tetlock, Philip & Ungar, Lyle. (2014). Combining multiple probability predictions using a simple logit model. International Journal of Forecasting. 30. 344–356. 10.1016/j.ijforecast.2013.09.009. 
