@@ -400,7 +400,7 @@ $$\mathbf{x} \subset \mathcal{X_{i}}$$.
 My understanding is that the authors propose the following formal mapping onto the problem investigated
 through Fermi-Dirac statistics. Consider the [disjoint union](https://en.wikipedia.org/wiki/Disjoint_union)
 
-$$\mathcal{S} = \mathcal{X}_1 \sqcup \mathcal{X}_2 \sqcup \cdots \mathcal{X}_g$$
+$$\mathcal{S} = \mathcal{X}_1 \sqcup \mathcal{X}_2 \sqcup \cdots \sqcup \mathcal{X}_g$$
 
 Each $$s \in \mathcal{S}$$ is considered to be a possible state for a fermion.
 By construction each
