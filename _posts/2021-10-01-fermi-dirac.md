@@ -500,7 +500,7 @@ distribution that is the least-biased given the information at hand.
 
 Wait, one may say: "I don't recall reading anything about logistic regression
 producing a maximum entropy distribution in *The Elements of Statistical
-Learning* nor in Agresti's monumental textbook *Categorical Data Analysis* 
+Learning* nor in Agresti's classic textbook *Categorical Data Analysis* 
 [[10]](#10) which contains hundreds of pages devoted to logistic regression
 and its applications."
 
@@ -669,8 +669,8 @@ because it seemed ad-hoc and unprincipled. In just a short time I was proven
 very wrong. It took over six years from when I changed focus before I
 felt capable of developing novel and useful algorithms.
 
-Had I been asked to review this paper, I would not have made the decision to
-reject. Certainly I would have asked for major revisions, but ultimately
+Had I been asked to review this paper, I would not have recommended
+rejection. Certainly I would have asked for major revisions, but ultimately
 I think this is worthwhile work. I would have pointed out that they were
 in fact fitting a logistic regression model and basically made them aware of
 all of the contents of this post. I would have asked them to rewrite the paper
