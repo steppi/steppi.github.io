@@ -499,7 +499,7 @@ fact is not more widely known but it turns out that logistic regression is
 actually characterized by producing the distribution that is the least-biased
 given the information at hand.
 
-### The Max Entropy classifier is Logistic Regression
+### The Max Entropy Classifier is Logistic Regression
 
 Wait, one may say: "I don't recall reading anything about logistic regression
 producing a maximum entropy distribution in *The Elements of Statistical
