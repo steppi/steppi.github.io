@@ -35,7 +35,7 @@ Feel free to skim or skip through any passages that appear tedious to you.
 ### Review of Fermi-Dirac Statistics
 First let's give a brief introduction to the basics of [Fermi-Dirac statistics](https://en.wikipedia.org/wiki/Fermi%E2%80%93Dirac_statistics). I'll
 try to make the presentation accessible to those from a general mathematically
-literate audience who may not have experience with modern physics. We're only
+literate audience who may not have much experience with physics. We're only
 going through the minimum background necessary, describing the mathematical
 properties of this model without going into any of the underlying physics.
 
