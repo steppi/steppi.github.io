@@ -40,7 +40,7 @@ going through the minimum background necessary, describing the mathematical
 properties of this model without going into any of the underlying physics.
 
 
-The problem concerns systems of many indistinguisable and non-interacting 
+The problem concerns systems of many indistinguishable and non-interacting 
 elementary particles called
 fermions. Systems of non-interacting particles are also known as
 gases and the systems of interest are known as
@@ -365,7 +365,10 @@ considered by the authors of [[1]](#1).
 
 The authors of [[1]](#1) consider a classification model $$\mathcal{M}$$
 which has fit a function $$\hat{f}$$ which does not return calibrated
-probabilities.
+probabilities. I'll use a slight modification of their formulation of the
+problem in order to make the derivation of Fermi-Dirac distribution given above
+more directly applicable while also side-stepping some subtleties about the
+distinction between degeneracies and replications.
 
 Given a set of labeled training data $$\mathcal{X}_1$$ with $$n$$ elements
 and that is disjoint from the training data that was used to fit $$\hat{f}$$,
@@ -491,12 +494,12 @@ this mean that logistic regression somehow produces parameters $$\alpha$$ and
 $$\beta$$ that are suboptimal because it is only a heuristic methodology
 while their method produces better parameters because it is the least biased
 distribution given the information at hand? Have statisticians really been
-doing it wrong for all these years? Well... it's unfortunate that the
-reviewers let the passage quoted above through, because it turns
-out that logistic regression is actually characterized by producing the
-distribution that is the least-biased given the information at hand.
+doing it wrong for all these years? I think it's really unfortunate that this
+fact is not more widely known but it turns out that logistic regression is
+actually characterized by producing the distribution that is the least-biased
+given the information at hand.
 
-### The Max Entropy classifier is Logistic Regression is the Max Entropy classifier
+### The Max Entropy classifier is Logistic Regression
 
 Wait, one may say: "I don't recall reading anything about logistic regression
 producing a maximum entropy distribution in *The Elements of Statistical
@@ -522,9 +525,9 @@ $$\pi:\:\mathbf{X}\rightarrow [0, 1]$$ such that $$\pi(\mathbf{x})$$ gives
 an estimate that the true label corresponding to $$\mathbf{x} \in \mathbf{X}$$
 is 1 for any $$\mathbf{x} \in \mathbf{X}$$.
 
-Following either of the references from this section, one can show that
-logistic regression can be derived by considering $$\pi$$ satisfying
-the following constraints
+Following either of the above references one show that the max entropy
+classifier is equivalent to logistic regression. The max entropy classifier
+can be derived by considering $$\pi$$ satisfying the following constraints
 
 $$0 \leq \pi(x) \leq 1,\:\: \forall \mathbf{x} \in \mathbf{X}$$
 
@@ -537,7 +540,6 @@ where $$x_i$$ denotes the ith coordinate of $$\mathbf{x}$$.
 The second asks that the sum in each particular coordinate over all values
 in the training data with label $$1$$ is equal to the expected sum over that
 coordinate under the distribution $$\pi$$).
-
 
 From all functions $$\pi$$ satisfying the constraints, one chooses that
 which maximizes the Shannon entropy
@@ -578,8 +580,10 @@ from which it's possible to derive the constraint
 $$\sum_{x \in \mathcal{X}}\pi(x)x = 
 \sum_{x \in \mathcal{X}}[f(x) = 1]x$$ 
 
-By working through the equations for each method, one can see that the standard
-method produces the same $$\alpha$$ and $$\beta$$ as the max entropy method.
+By working through the equations for each method, it's possible to show that
+standard method produces the same $$\alpha$$ and $$\beta$$ as the max entropy
+method. We leave the details out for brevity, see the aformentioned article by
+Berger et al for a more thorough proof.
 
 OK, so it turns out that the authors do seem to be fitting a logistic regression
 of some kind. But
