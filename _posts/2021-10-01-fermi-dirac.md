@@ -365,72 +365,74 @@ considered by the authors of [[1]](#1).
 
 The authors of [[1]](#1) consider a classification model $$\mathcal{M}$$
 which has fit a function $$\hat{f}$$ which does not return calibrated
-probabilities. I'll use a slight modification of their formulation of the
-problem in order to make the derivation of Fermi-Dirac distribution given above
-more directly applicable while also side-stepping some subtleties about the
-distinction between degeneracies and replications.
+probabilities. Their formulation of the problem corresponds to a Fermi gas with
+no degeneracies, that is, one where there is only one state per energy level.
+The above derivation of the Fermi-DIrac distribution is not applicable in
+this case, so I'm going to use an alternative formulation to work around this.
+For those interested, see the original paper and particularly its appendix
+for information on how they formulate the problem.
 
-Given a set of labeled training data $$\mathcal{X}_1$$ with $$n$$ elements
+Given a set of labeled training data $$\mathcal{X}$$ with $$n$$ elements
 and that is disjoint from the training data that was used to fit $$\hat{f}$$,
-to each point $$\mathbf{x} \in \mathcal{X}_1$$ they associate the
+to each point $$\mathbf{x} \in \mathcal{X}$$ they associate the
 score $$\hat{f}(\mathbf{x})$$. The scores are then sorted in order from highest
 to lowest. Scores corresponding to points for which the classifier is more
 confident belong to the class of interest appear before points for which
 it is less confident.
-Scores are then
-replaced with their ranks within this sorted list, so that each point in
-$$\mathcal{X}_1$$ is mapped to a natural number between $$1$$ and $$n$$ such
-that if $$\mathbf{x}_i$$ is mapped to a lower number than $$\mathbf{x}_j$$, then
-the classifier is more confident that $$\mathbf{x}_i$$ belongs to the class of
-interest. The authors assume that ties are broken uniformly at random.
 
-If $$\mathcal{X} \subset \mathbf{X}$$, let $$N(\mathcal{X})$$ stand for the
-number of points in $$\mathcal{X}$$ with true label $$y = 1$$.
+Scores are then replaced with their ranks within this sorted list, so that
+each point in $$\mathcal{X}$$ is mapped to a natural number between $$1$$ and
+$$n$$ such that if $$\mathbf{x}_i$$ is mapped to a lower number than
+$$\mathbf{x}_j$$, then the classifier is more confident that $$\mathbf{x}_i$$
+belongs to the class of interest. The authors assume that ties are broken
+uniformly at random.
 
-The authors then envision a collection of $$g - 1$$ subsets taken through
-independent and identically distributed samples from the collection
+Ranks for unseen datapoints $$\mathbf{x}$$ not in $$\mathcal{X}$$ can be
+computed by calculating $$x = \hat{f}(\mathbf{x})$$, situating it among the
+sorted scores from
 
-$$\mathcal{A} = \left\{\mathcal{X} \subset \mathbf{X}:\: |\mathcal{X}| = |\mathcal{X}_1| =  n \text{ and } N(\mathcal{X}) = N(\mathcal{X}_1) \right\}$$
+$$\mathrm{Scores} = \left\{\hat{f}(\mathbf{x}_i):\: \mathbf{x}_i \in \mathcal{X}_1\right\}$$
 
-($$\mathcal{X}_1$$ is also assumed to have been drawn iid from the same distribution.)
+and assigning it the rank of the nearest score in the set $$\mathrm{Scores}$$,
+perhaps making a determination to always assign the smaller rank if 
+$$\hat{f}(\mathbf{x})$$ is at the midpoint of two neighboring scores.
 
-Call these subsets $$\mathcal{X}_2, \ldots, \mathcal{X}_{g}$$.
+In this way they define a function 
 
-To each $$\mathcal{X}_i$$, apply the same procedure that was applied to
-$$\mathcal{X}_1$$ to assign a rank between $$1$$ and $$n$$ to each
-$$\mathbf{x} \subset \mathcal{X_{i}}$$.
+$$\operatorname{rank}:\: \mathbf{X} \rightarrow [1, \ldots, n]$$.
 
-My understanding is that the authors propose the following formal mapping onto the problem investigated
-through Fermi-Dirac statistics. Consider the [disjoint union](https://en.wikipedia.org/wiki/Disjoint_union)
+One can construct a formal mapping onto the problem investigated
+through Fermi-Dirac statistics in the following way. Assume $$\mathcal{X}$$ was
+a random sample
+from the set $$\mathbf{X}$$ of otherwise unlabeled data. Each datapoint
+$$\mathbf{x}$$ in $$\mathbf{X}$$ is considered to be a possible state for a
+fermion. If $$\mathbf{x} \in \mathbf{X}$$ then let the energy level associated
+to the state $$\mathbf{x}$$ be defined as $$\operatorname{rank}(\mathbf{x})$$.
 
-$$\mathcal{S} = \mathcal{X}_1 \sqcup \mathcal{X}_2 \sqcup \cdots \sqcup \mathcal{X}_g$$
-
-Each $$s \in \mathcal{S}$$ is considered to be a possible state for a fermion.
-By construction each
-$$s \in \mathcal{S}$$ belongs to one and only one of the
-$$\mathcal{X}_i$$s. If $$s \in \mathcal{X}_i$$, the rank $$\epsilon$$ of $$s$$
-in $$\mathcal{X}_i$$ as calculated above is assigned to $$s$$ as its energy.
-
-The state $$s$$ is considered to be occupied by a fermion if the true label
-corresponding to the point $$s$$ is $$1$$ (e.g. grayscale images containing
+The state $$\mathbf{x}$$ is considered to be occupied by a fermion if the
+true label corresponding to the point $$\mathbf{x}$$ is $$1$$
+(e.g. grayscale images containing
 cats are occupied by fermions), otherwise the state is considered to be
-unoccupied. 
+unoccupied.
 
-Each state $$s$$ can be occupied by at most one fermion by construction and
-thus the Pauli exclusion principle holds. By construction, the degeneracy
-of each energy level is $$g$$.
-Each of the $$X_i$$s contains the same number of fermions $$N^{'}$$ and
-total number of fermions is $$N = N^{'}g$$.
+Each state $$\mathbf{x}$$ can be occupied by at most one fermion since each
+datapoint is assumed to have a unique label of either $$0$$ or $$1$$ and thus the
+Pauli exclusion principle holds. We assume that $$\mathbf{X}$$ is
+sufficiently large compared to $$\mathcal{X}$$ that each possible rank will
+appear enough times to ensure the degeneracies are large enough to apply the
+above derivation of the Fermi-Dirac distribution.
 
-The total energy $$E$$ is equal to
+The total number of fermions $$N$$ in the Fermi gas is then
 
-$$E = \sum_{s \in \mathcal{S}}\left[f(s) = 1\right]\operatorname{rank}(s)$$
+$$N = \sum_{\mathbf{x} \in \mathbf{X}}\left[f(\mathbf{x}) = 1\right]$$
+
+and the total energy $$E$$ is
+
+$$E = \sum_{\mathbf{x} \in \mathbf{X}}\left[f(\mathbf{x}) = 1\right]\operatorname{rank}(\mathbf{x})$$
 
 where $$[\star]$$ is the [Iverson bracket notation](https://en.wikipedia.org/wiki/Iverson_bracket) defined by $$[\star] = 1$$ if $$\star$$ is true, otherwise
 $$[\star] = 0$$. Recall that $$f$$ is the unknown function that maps each
-$$\mathbf{x} \in \mathbf{X}$$ to its true label $$y$$. $$\operatorname{rank}(s)$$
-is defined as the rank of $$s$$ in $$\mathcal{X}_i$$ for the unique (by
-construction) $$\mathcal{X}_i$$ such that $$s \in \mathcal{X}_i$$.
+$$\mathbf{x} \in \mathbf{X}$$ to its true label $$y$$.
 
 If $$N$$ and $$E$$ are known, then the probability $$\pi(k| N, E)$$ that a
 datapoint s has true label 1 given that $$\operatorname{rank}(s) = k$$
@@ -439,27 +441,16 @@ is not necessarily the true probability that the true label is 1 given the rank,
 but is the distribution that makes the minimal number of assumptions given
 the constraints.
 
-In the construction above $$N$$ is known but $$E$$ is not. However, $$E$$ can
-be estimated based on the labeled dataset $$X_1$$, for which the energy *can*
-be calculated. If $$X_1$$ has total energy $$E^{'}$$, then the total energy
-$$E$$ can be estimated as $$E \approx E^{'}g$$. 
+Although $$N$$ and $$E$$ are not known, they can be estimated based on the
+labeled dataset $$\mathcal{X}$$ for which the total number of fermions and
+the total energy *can* be calculated. One simply extrapolates the average number
+of fermions per datapoint and the average energy per datapoint within 
+$$\mathcal{X}$$ to all of $$\mathbf{X}$$.
 
 Calibrated probability scores can then be computed through the formula
 
 $$\operatorname{Prob}\left[f(s) = 1\right] \approx \frac{1}{1 + e^{\alpha + \beta \operatorname{rank}(s)}}$$
 
-Note that $$\mathcal{X}_2, \ldots, \mathcal{X}_g$$ need only exist in thought
-and are included only to create a closer alignment with the presentation of
-Fermi-Dirac statistics given above. Calibrated probability scores for unseen
-datapoints
-$$\mathbf{x}$$ not in $$\mathcal{X}_1$$ can be computed by calculating
-$$x = \hat{f}(\mathbf{x})$$, situating it among the sorted scores from
-
-$$\mathrm{Scores} = \left\{\hat{f}(\mathbf{x}_i):\: \mathbf{x}_i \in \mathcal{X}_1\right\}$$
-
-and assigning it the rank of the nearest score in the set $$\mathrm{Scores}$$,
-perhaps making a determination to always assign the smaller rank if 
-$$\hat{f}(\mathbf{x})$$ is at the midpoint of two neighboring scores.
 
 Those who are familiar with logistic regression may feel something is a
 little suspicious. Haven't they just fit a logistic regression model using
@@ -582,7 +573,7 @@ $$\sum_{x \in \mathcal{X}}\pi(x)x =
 
 By working through the equations for each method, it's possible to show that
 standard method produces the same $$\alpha$$ and $$\beta$$ as the max entropy
-method. We leave the details out for brevity, see the aformentioned article by
+method. We leave the details out for brevity, see the aforementioned article by
 Berger et al for a more thorough proof.
 
 OK, so it turns out that the authors do seem to be fitting a logistic regression
@@ -646,6 +637,10 @@ this method in comparison to others can be found in a highly relevant paper by
 Satopää et al[[13]](#13). In the case of FiDEL, the scores output by different
 classifiers are converted to calibrated probabilities through the author's
 physics inspired variant of Platt scaling, and then combined in this way.
+
+The most interesting parts of [[1]](#1) connect the physical interpretations
+of the parameters $$\alpha$$ and $$\beta$$ within a Fermi gas with the
+interpretation of these parameters in binary classification.
 
 
 ## Conclusion
