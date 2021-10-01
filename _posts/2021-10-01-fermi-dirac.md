@@ -453,7 +453,7 @@ $$\operatorname{Prob}\left[f(s) = 1\right] \approx \frac{1}{1 + e^{\alpha + \bet
 
 
 Those who are familiar with logistic regression may feel something is a
-little suspicious. Haven't they just fit a logistic regression model using
+little suspicious. Haven't we just fit a logistic regression model using
 rank transformed features? Let's see what the authors have to say about it
 
 *Some methods, however, explicitly model the posterior probability of their
