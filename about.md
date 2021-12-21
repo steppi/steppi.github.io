@@ -4,7 +4,9 @@ title: About
 permalink: /about/
 ---
 
-I'm currently a Machine Learning Research Scientist at [Lendbuzz](https://lendbuzz.com/). Previously I worked as a  Scientific Software Developer on the
+I'm currently a Machine Learning Research Scientist at [Lendbuzz](https://lendbuzz.com/).
+
+Previously I worked as a  Scientific Software Developer on the
 [INDRA](https://indralab.github.io) team in the
 [Laboratory of Systems Pharmacology](https://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/about/) at Harvard Medical School. My work at HMS focused
 primarily on named entity grounding and disambiguation and blurred the boundaries
