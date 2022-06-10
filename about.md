@@ -20,9 +20,7 @@ between software engineering and data science.
 I received my Ph.D. in Statistics at
 Florida State University working in the group of [Jinfeng Zhang](https://ani.stat.fsu.edu/~jinfeng/),
 focusing on network-aware bioinformatics
-data analysis and biomedical text mining. I like to work with the [Python
-Scientific Computing Ecosystem](https://www.scipy.org/about.html). Since
-December 2021I try to
+data analysis and biomedical text mining. I try to
 take a principled approach to machine learning with an emphasis on validation,
 interpretability, data quality, and understanding of the limitations of
 algorithms in the context of the systems in which they participate. You can
