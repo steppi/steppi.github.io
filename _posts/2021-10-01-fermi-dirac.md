@@ -685,10 +685,21 @@ make some compelling arguments for it. Like most techniques it will probably
 be beneficial in some cases and harmful in others with empirical performance 
 being the final judge, but it's an interesting tool to keep in mind.
 
-**Judgement:**
+**Judgment:**
 *The paper is thought provoking in its own right regardless of whether the methods
 are novel and is worth a read.*
 
+### Cite this post
+
+```
+@misc{FermiDirac2021,
+  author = {A Steppi},
+  title = {On a surprising relationship between statistical physics and machine learning},
+  year = 2021,
+  howpublished = {\url{https://web.archive.org/web/20221205220500/https://steppi.github.io/2021/10/01/fermi-dirac.html}},
+  note = {Accessed: 2022-12-05}
+}
+```
 
 ### References
 <a id="1">[1]</a>
