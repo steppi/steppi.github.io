@@ -685,7 +685,7 @@ make some compelling arguments for it. Like most techniques it will probably
 be beneficial in some cases and harmful in others with empirical performance 
 being the final judge, but it's an interesting tool to keep in mind.
 
-**Judgement:**
+**Judgment:**
 *The paper is thought provoking in its own right regardless of whether the methods
 are novel and is worth a read.*
 
