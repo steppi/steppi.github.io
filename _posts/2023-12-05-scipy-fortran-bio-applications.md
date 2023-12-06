@@ -64,7 +64,7 @@ drugs are processed by and impact the body [[15]](#15)[[16]](#16)
 
 
 
-#### __quadpack__: <small> Adaptive numerical integration [[4]](#4)</small>
+#### __quadpack__: <small> Adaptive numerical integration</small>
 quadpack provides a suite of mostly adaptive methods for numerical integration
 of one-dimensional functions [[21]](#21). Adaptive routines can adjust automatically
 to a problem, offering the ability to integrate a wide range of functions without
@@ -73,9 +73,17 @@ with applications too numerous to list. SciPy exposes quadpack through the funct
 [scipy.integrate.quad](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html).
 
 
-#### __fitpack__: <small>smoothing splines [[5]](#5)</small>
-Smoothing splines make smooth approximations to a function based on noisy observations.
-Some applications to biomedicine include:
+#### __fitpack__: <small>Smoothing splines</small>
+Smoothing splines are used to create smooth approximations to a function
+based on noisy observations. Not to be confused with the FITPACK library of Alan Cline,
+this is a package of Fortran subroutines for calculating smoothing splines for various
+kinds of data and geometries, and with automatic knot selection, and is also known as
+DIERCKX [[22]](#22). SciPy exposes fitpack through the classes [scipy.interpolate.UnivariateSpline](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.UnivariateSpline.html), [scipy.interpolate.InterpolatedUnivariateSpline](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.InterpolatedUnivariateSpline.html), and
+[scipy.interpolate.LSQUnivariateSpline](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.LSQUnivariateSpline.html), and directly through wrappers for fitpack's
+individual subroutines.
+
+
+Some applications of smoothing splines to biomedicine include:
 - __Biomedical signal processing__: for smoothing and noise reduction of electrocardiogram (ECG), electroencephalogram (EEG) data
 - __Medical Imaging__: used in the image reconstruction process to reduce noise and improve
 image clarity
@@ -108,7 +116,10 @@ and response variables. Some biomedical applications include:
 
 
 
-#### __cobyla, L-BFGS-B, slsqp__: <small>constrained optimization [[8]](#8)[[9]](#9)[[10]](#10)</small>
+#### __cobyla__: <small>Derivative free constrained optimization</small>
+
+
+#### __L-BFGS-B and slsqp__: <small>Gradient-based constrained optimization</small>
 
 
 #### __minpack__: <small>nonlinear equations and least squares minimization [[11]](#11)</small>
@@ -194,13 +205,15 @@ van den Bogert AJ, Blana D, Heinrich D. Implicit methods for efficient musculosk
 <a id="21">[21]</a>
 Piessens R, deDoncker-Kapenga E, Uberhuber C, Kahaner D. Quadpack: A Subroutine Package for Automatic Integration. Series in Computational Mathematics v.1. Berlin, Germany: Springer-Verlag; 1983. 515.43/Q1S 100394Z.
 
+<a id="22">[22]</a>
+Dierckx P. Curve and Surface Fitting with Splines. Oxford, UK: Oxford University Press; 1993.
+
 <!---
 
 <a id="6">[6]</a>
 
 
-<a id="7">[7]</a>
-Dierckx P. Curve and Surface Fitting with Splines. Oxford, UK: Oxford University Press; 1993.
+
 
 <a id="8">[8]</a>
 Martinsson P-G, Rokhlin V, Shkolnisky Y, Tygert M. ID: A Software Package for Low-Rank Approximation of Matrices via Interpolative Decompositions, Version 0.2. 2008.
