@@ -43,7 +43,7 @@ which can be preferable when the user has a good grip on a problem's stiffness
 characteristics and needs closer control over the integration process. dop
 [[10]](#10) implements the Dormand-Prince method, an explicit Runge-Kutta
 method. This simpler algorithm offers superior performance and accuracy, with
-great error estimates, for smooth and non-stiff problems. SciPy exposes all of
+good error estimates, for smooth and non-stiff problems. SciPy exposes all of
 these methods through the functions
 [scipy.integrate.solve_ivp](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp),
 [scipy.integrate.ode](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.ode.html),
@@ -64,8 +64,12 @@ drugs are processed by and impact the body [[15]](#15)[[16]](#16)
 
 
 
-#### __quadpack__: <small>Numerical integration [[4]](#4)</small>
-Essential component of an enormous range of methods and algorithms.
+#### __quadpack__: <small> Adaptive numerical integration [[4]](#4)</small>
+quadpack provides a suite of mostly adaptive methods for numerical integration
+of one-dimensional functions [[21]](#21). Adaptive routines can adjust automatically
+to a problem, offering the ability to integrate a wide range of functions without
+needing to study their particular properties. Integration is a fundamental operation
+with applications too numerous to list. Some applications include 
 
 
 #### __fitpack__: <small>smoothing splines [[5]](#5)</small>
@@ -186,10 +190,13 @@ Walcott S. Muscle activation described with a differential equation model for la
 <a id="20">[20]</a>
 van den Bogert AJ, Blana D, Heinrich D. Implicit methods for efficient musculoskeletal simulation and optimal control. Procedia IUTAM. 2011;2(2011):297-316. doi:10.1016/j.piutam.2011.04.027
 
+<a id="21">[21]</a>
+Piessens R, deDoncker-Kapenga E, Uberhuber C, Kahaner D. Quadpack: A Subroutine Package for Automatic Integration. Series in Computational Mathematics v.1. Berlin, Germany: Springer-Verlag; 1983. 515.43/Q1S 100394Z.
+
 <!---
 
 <a id="6">[6]</a>
-Piessens R, deDoncker-Kapenga E, Uberhuber C, Kahaner D. Quadpack: A Subroutine Package for Automatic Integration. Series in Computational Mathematics v.1. Berlin, Germany: Springer-Verlag; 1983. 515.43/Q1S 100394Z.
+
 
 <a id="7">[7]</a>
 Dierckx P. Curve and Surface Fitting with Splines. Oxford, UK: Oxford University Press; 1993.
