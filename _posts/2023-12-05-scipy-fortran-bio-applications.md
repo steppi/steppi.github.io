@@ -96,16 +96,20 @@ relationships between biomarkers and clinical outcomes [[28]](#28) etc.
 
 
 #### __id_dist__: <small>Low rank matrix approximation</small>
-Low rank matrix approximation is valuable for dimension reduction and noise filtering
-in high dimensional datasets. Some biomedical applications include:
-- __Omics analysis__: finding clusters of co-expressed genes in gene expression microarray,
-or RNASeq data. Uncovering relationships among proteins/metabolites in
-proteomics/metabolomics data.
-- __Medical imaging__: separating signal from noise in image reconstruction.
+Low rank matrix approximation aims to find more compact representations of data while
+limiting loss of information. SciPy vendors the low-rank matrix approximation package
+ID [[29]](#29) as id_dist and exposes it through the module
+[scipy.linalg.interpolative](https://docs.scipy.org/doc/scipy/reference/linalg.interpolative.html). Some of the numerous applications of low rank matrix approximation in biomedicine
+include:
+
+- __Omics analysis__: completion of gene expression data from partial measures [[30]](#30),
+predicting biomarker-disease associations [[31]](#31), finding clusters of
+co-expressed genes from gene expression microarray or RNASeq data  [[32]](#32),
+- __Medical imaging__: separating signal from noise in image reconstruction [[33]](#33).
 - __Machine learning__: feature extraction/dimensionality reduction as a preprocessing
-step for machine learning models applied to biomedical problems.
+step for machine learning models applied to biomedical problems [[34]](#34).
 - __Systems biology__ Finding important interactions within biological networks,
-e.g. protein-protein interactions, gene regulatory networks.
+e.g. protein-protein interactions, gene regulatory networks [[35]](#35).
 
 
 
@@ -230,6 +234,29 @@ Noorkojuri H, Hajizadeh E, Baghestani A, Pourhoseingholi M. Application of smoot
 <a id="28">[28]</a>
 Gauthier, J., Wu, Q.V. & Gooley, T.A. Cubic splines to model relationships between continuous variables and outcomes: a guide for clinicians. Bone Marrow Transplant 55, 675–680 (2020). https://doi.org/10.1038/s41409-019-0679-x
 
+<a id="29">[29]</a>
+Martinsson P-G, Rokhlin V, Shkolnisky Y, Tygert M. ID: A Software Package for Low-Rank Approximation of Matrices via Interpolative Decompositions, Version 0.2. 2008.
+
+<a id="30">[30]</a>
+Kapur A, Marwah K, Alterovitz G. Gene expression prediction using low-rank matrix completion. BMC Bioinformatics. 2016;17:243. doi:10.1186/s12859-016-1106-6.
+
+<a id="31">[31]</a>
+Lu C, Yang M, Luo F, et al. Prediction of lncRNA-disease associations based on inductive matrix completion. Bioinformatics. 2018;34(19):3357-3364. doi:10.1093/bioinformatics/bty327
+
+
+<a id="32">[32]</a>
+Li J, Lai Y, Zhang C, Zhang Q. TGCnA: temporal gene coexpression network analysis using a low-rank plus sparse framework. J Appl Stat. 2019;47(6):1064-1083. Published 2019 Sep 16. doi:10.1080/02664763.2019.1667311
+
+
+<a id="33">[33]</a>
+Mohd Sagheer SV, George SN. Ultrasound image despeckling using low rank matrix approximation approach. Biomed Signal Process Control. 2017;38:236-249. doi:10.1016/j.bspc.2017.06.011.
+
+<a id="34">[34]</a>
+Markovsky I. Low Rank Approximation: Algorithms, Implementation, Applications. Springer; 2014.
+
+
+<a id="35">[35]</a>
+Li L-P, Wang Y-B, You Z-H, Li Y, An J-Y. PCLPred: A Bioinformatics Method for Predicting Protein–Protein Interactions by Combining Relevance Vector Machine Model with Low-Rank Matrix Approximation. International Journal of Molecular Sciences. 2018; 19(4):1029. https://doi.org/10.3390/ijms19041029 
 
 <!---
 
@@ -238,8 +265,6 @@ Gauthier, J., Wu, Q.V. & Gooley, T.A. Cubic splines to model relationships betwe
 
 
 
-<a id="8">[8]</a>
-Martinsson P-G, Rokhlin V, Shkolnisky Y, Tygert M. ID: A Software Package for Low-Rank Approximation of Matrices via Interpolative Decompositions, Version 0.2. 2008.
 
 
 
