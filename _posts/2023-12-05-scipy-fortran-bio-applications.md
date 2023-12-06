@@ -4,8 +4,10 @@ title: "How are SciPy's Fortran libraries used in biomedicine?"
 published: true
 ---
 
-*Hi CZI EOSS reviewers, if by chance you're taking an early look, this article is under
-construction and should be completed by 11:00pm PT on December 5th 2023.*
+*Hi CZI EOSS reviewers, if by chance you're already checking the references on
+the Improve sustainability of SciPy proposal, this article is still under
+construction and should be completed sometime midday December 6th.*
+
 
 
 ### Introduction
@@ -79,20 +81,21 @@ based on noisy observations. Not to be confused with the FITPACK library of Alan
 this is a package of Fortran subroutines for calculating smoothing splines for various
 kinds of data and geometries, and with automatic knot selection, and is also known as
 DIERCKX [[22]](#22). SciPy exposes fitpack through the classes [scipy.interpolate.UnivariateSpline](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.UnivariateSpline.html), [scipy.interpolate.InterpolatedUnivariateSpline](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.InterpolatedUnivariateSpline.html), and
-[scipy.interpolate.LSQUnivariateSpline](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.LSQUnivariateSpline.html), and directly through wrappers for fitpack's
-individual subroutines.
+[scipy.interpolate.LSQUnivariateSpline](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.LSQUnivariateSpline.html), directly through wrappers for fitpack's
+individual subroutines, and through the legacy function [interp1d](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp1d.html).
 
 
 Some applications of smoothing splines to biomedicine include:
-- __Biomedical signal processing__: for smoothing and noise reduction of electrocardiogram (ECG), electroencephalogram (EEG) data
+- __Biomedical signal processing__: e.g. for smoothing and noise reduction of electrocardiogram (ECG) data [[23]](#23)
 - __Medical Imaging__: used in the image reconstruction process to reduce noise and improve
-image clarity
+image clarity [[24]](#24)
 - __Statistical Curve Fitting__: fitting curves to biological data to capture trends, e.g.
-dose response modeling in pharmacology, modeling growth curves in developmental biology,
-survival curves in epidemiology, relationships between biomarkers and clinical outcomes
+dose response modeling in pharmacology [[25]](#25), modeling growth curves in developmental
+biology [[26]](#26), survival curves in epidemiology [[27]](#27),
+relationships between biomarkers and clinical outcomes [[28]](#28) etc.
 
 
-#### __id_dist__: <small>Low rank matrix approximation [[6]](#6)</small>
+#### __id_dist__: <small>Low rank matrix approximation</small>
 Low rank matrix approximation is valuable for dimension reduction and noise filtering
 in high dimensional datasets. Some biomedical applications include:
 - __Omics analysis__: finding clusters of co-expressed genes in gene expression microarray,
@@ -106,7 +109,7 @@ e.g. protein-protein interactions, gene regulatory networks.
 
 
 
-#### __odrpack__: <small>orthogonal distance regression [[7]](#7)</small>
+#### __odrpack__: <small>orthogonal distance regression</small>
 Orthogonal distance regression is able to account for errors in both the predictor
 and response variables. Some biomedical applications include:
 - __Calibration of biomedical instruments__:
@@ -122,18 +125,18 @@ and response variables. Some biomedical applications include:
 #### __L-BFGS-B and slsqp__: <small>Gradient-based constrained optimization</small>
 
 
-#### __minpack__: <small>nonlinear equations and least squares minimization [[11]](#11)</small>
+#### __minpack__: <small>nonlinear equations and least squares minimization</small>
 
 
-#### __ARPACK and PROPACK__: <small>sparse linear algebra [[12]](#12)[[13]](#13)</small>
+#### __ARPACK and PROPACK__: <small>sparse linear algebra</small>
 Sparse eigenvalue and singular value decomposition problems are essential for dealing with
 large, sparse matrices (where most elements are zero) which are common in biomedical data.
 
 
-#### __AMOS, cdflib, and specfun__: <small>special functions [[14]](#14)[[15]](#15)[[16]](#16)</small>
+#### __AMOS, cdflib, and specfun__: <small>special functions</small>
 
 
-#### __mvndist__: <small>multivariate normal distribution function [[17]](#17)</small>
+#### __mvndist__: <small>multivariate normal distribution function</small>
 
 
 
@@ -207,6 +210,26 @@ Piessens R, deDoncker-Kapenga E, Uberhuber C, Kahaner D. Quadpack: A Subroutine 
 
 <a id="22">[22]</a>
 Dierckx P. Curve and Surface Fitting with Splines. Oxford, UK: Oxford University Press; 1993.
+
+<a id="23">[23]</a>
+Abdul, Ehab & Hussein, Razzaq & Abdulridha, Hayder & N. Hassan, Ashwaq. (2015). Feature Extraction of ECG Signal using Cubic Spline Technique. 128. 97-107. 
+
+
+<a id="24">[24]</a>
+Unser M. Splines: A Perfect Fit for Medical Imaging. Proc SPIE Int Soc Opt Eng. 2002;4684. doi:10.1117/12.467162.
+
+<a id="25">[25]</a>
+Kirby S, Colman P, Morris M. Adaptive modelling of dose-response relationships using smoothing splines. Pharm Stat. 2009;8(4):346-355. doi:10.1002/pst.363
+
+<a id="26">[26]</a>
+Unser M. Splines: A Perfect Fit for Medical Imaging. Proc SPIE Int Soc Opt Eng. 2002;4684. doi:10.1117/12.467162.
+
+<a id="27">[27]</a>
+Noorkojuri H, Hajizadeh E, Baghestani A, Pourhoseingholi M. Application of smoothing methods for determining of the effecting factors on the survival rate of gastric cancer patients. Iran Red Crescent Med J. 2013;15(2):166-172. doi:10.5812/ircmj.8649
+
+<a id="28">[28]</a>
+Gauthier, J., Wu, Q.V. & Gooley, T.A. Cubic splines to model relationships between continuous variables and outcomes: a guide for clinicians. Bone Marrow Transplant 55, 675–680 (2020). https://doi.org/10.1038/s41409-019-0679-x
+
 
 <!---
 
