@@ -29,19 +29,38 @@ could be applied to biomedical research and development.
 
 
 
-#### __ODEPACK and dop__ : <small>Systems of ordinary differential equations [[2]](#2)[[3]](#3)</small>
-Ordinary differential equations are a fundemental tool for modeling dynamical processes.
-Some applications to biomedicine include:
-- __Systems biology__: for modeling networks of biomolecular interactions
-(citations)
-- __Cardiology__: for modeling electrical activities of the heart, dynamics of
-blood flow, and other cardiovascular phenomena
-- __Epidemiology__: to model the spread of infectious disease
+#### __ODEPACK and dop__: <small>Systems of ordinary differential equations</small>
+Ordinary differential equations (ODEs) are a fundemental tool for modeling
+dynamical processes.  ODEPACK [[5]](#5) contains a collection of ODE solvers
+developed in the Lawrence Livermore National Library (LLNL). Although there are
+9 solvers in this collection, SciPy only uses LSODA [[6]](#6)[[7]](#7), an
+adaptive solver which automatically switches between methods suitable for stiff
+or nonstiff problems [[8]](#8), giving it the flexibility to tackle a diverse
+range of problems without needing advanced knowledge of the problems
+characteristics. Though not strictly part of ODEPACK, SciPy vendors LLNL's
+variable-coefficient VODE and ZVODE solvers [[9]](#9) together with ODEPACK,
+which can be preferable when the user has a good grip on a problem's stiffness
+characteristics and needs closer control over the integration process. dop
+[[10]](#10) implements the Dormand-Prince method, an explicit Runge-Kutta
+method. This simpler algorithm offers superior performance and accuracy, with
+great error estimates, for smooth and non-stiff problems. SciPy exposes all of
+these methods through the functions
+[scipy.integrate.solve_ivp](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp),
+[scipy.integrate.ode](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.ode.html),
+and offers a direct interface to LSODA through
+[scipy.integrate.odeint](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.odeint.html#scipy.integrate.odeint).
+
+
+Applications of systems of ODEs to biomedicine include:
+- __Systems biology__: for modeling networks of biomolecular interactions [[11]](#11)
+- __Cardiology__: for modeling electrical activities of the heart [[12]](#12), dynamics of
+blood flow [[13]](#13), and other cardiovascular phenomena
+- __Epidemiology__: to model the spread of infectious disease [[14]](#14)
 - __Pharmacokinetics and Pharmacodynamics (PK/PD)__: for modeling how
-drugs are processed by and impact the body
-- __Neuoroscience__: for modeling electrical activity of neurons and neural networks
-- __Cancer Biology__: for modeling tumor growth and interactions between cancer cells and the immune system
-- __Biomechanics__: for modeling things like muscle dynamics and joint movements
+drugs are processed by and impact the body [[15]](#15)[[16]](#16)
+- __Neuoroscience__: for modeling electrical activity of neurons and neural networks [[17]](#17)
+- __Cancer Biology__: for modeling tumor growth and interactions between cancer cells and the immune system [[18]](#18)
+- __Biomechanics__: for modeling things like muscle dynamics and joint movements [[19]](#19)[[20]](#20)
 
 
 
@@ -109,22 +128,65 @@ Pauli Virtanen, Ralf Gommers, Travis E. Oliphant, Matt Haberland, Tyler Reddy, D
 
 
 <a id="2">[2]</a>
-https://www.netlib.org
+[https://www.netlib.org](https://www.netlib.org)
 
 <a id="3">[3]</a>
-https://www.netlib.org/misc/faq.html#2.1
+[https://www.netlib.org/misc/faq.html#2.1](https://www.netlib.org/misc/faq.html#2.1)
 
 <a id="4">[4]</a>
-https://steppi.github.io/siam_history/Dongarra_returned_SIAM_copy.pdf
+[https://steppi.github.io/siam_history/Dongarra_returned_SIAM_copy.pdf](https://steppi.github.io/siam_history/Dongarra_returned_SIAM_copy.pdf)
 
-<a id="5">[5]</a>
-https://github.com/scipy/scipy/issues/19486#issuecomment-1807236934
-
-<a id="4">[4]</a>
-Hairer E, Norsett S, Wanner G. Solving Ordinary Differential Equations I: Nonstiff Problems. 1993. doi:10.1007/978-3-540-78862-1.
 
 <a id="5">[5]</a>
 Hindmarsh AC. ODEPACK, A Systematized Collection of ODE Solvers. In: Stepleman RS, et al, eds. Scientific Computing. Vol 1 of IMACS Transactions on Scientific Computation. Amsterdam, Netherlands: North-Holland; 1983:55-64.
+
+<a id="6">[6]</a>
+Petzold LR. Automatic selection of methods for solving stiff and nonstiff systems of ordinary differential equations. SIAM J Sci Stat Comput. 1983;4:136-148.
+
+
+<a id="7">[7]</a>
+[https://github.com/scipy/scipy/blob/deeb67ffc68d66a9b3069c1bb9cc3bb195c91b66/scipy/integrate/odepack/lsoda.f#L1C69-L1C69](https://github.com/scipy/scipy/blob/deeb67ffc68d66a9b3069c1bb9cc3bb195c91b66/scipy/integrate/odepack/lsoda.f#L1C69-L1C69)
+
+<a id="8">[8]</a>
+Wikipedia contributors. (n.d.). Stiff equation. Wikipedia. Retrieved December 5, 2023, from [https://en.wikipedia.org/wiki/Stiff_equation](https://en.wikipedia.org/wiki/Stiff_equation).
+
+<a id="9">[9]</a>
+Brown PN, Byrne GD, Hindmarsh AC. VODE: A Variable-Coefficient ODE Solver. SIAM J Sci Stat Comput. 1989;10(5):1038-1051. doi:10.1137/0910062.
+
+<a id="10">[10]</a>
+Hairer E, Norsett S, Wanner G. Solving Ordinary Differential Equations I: Nonstiff Problems. 1993. doi:10.1007/978-3-540-78862-1.
+
+<a id="11">[11]</a>
+Städter P, Schälte Y, Schmiester L, et al. Benchmarking of numerical integration methods for ODE models of biological systems. Sci Rep. 2021;11:2696. doi:10.1038/s41598-021-82196-2.
+
+<a id="12">[12]</a>
+Sundnes J, Lines GT, Tveito A. Efficient solution of ordinary differential equations modeling electrical activity in cardiac cells. Math Biosci. 2001;172(2):55-72. doi:10.1016/S0025-5564(01)00069-4.
+
+<a id="13">[13]</a>
+Myers TG, Ribas Ripoll V, Sáez de Tejada Cuenca A, Mitchell SL, McGuinness MJ. Modelling the cardiovascular system for assessing the blood pressure curve. Math Ind Case Stud. 2017;8(1):2. doi:10.1186/s40929-017-0011-1
+
+<a id="14">[14]</a>
+Beira MJ, Sebastião PJ. A differential equations model-fitting analysis of COVID-19 epidemiological data to explain multi-wave dynamics. Sci Rep. 2021;11:16312. doi:10.1038/s41598-021-95494-6.
+
+<a id="15">[15]</a>
+Krzyzanski W. Interpretation of transit compartments pharmacodynamic models as lifespan based indirect response models. J Pharmacokinet Pharmacodyn. 2011;38:179-204. doi:10.1007/s10928-010-9183-z.
+
+<a id="16">[16]</a>
+Rodríguez-Díaz JM, Sánchez-León G. Design optimality for models defined by a system of ordinary differential equations. Biom J. 2014;56:886-900. doi:10.1002/bimj.201300145.
+
+<a id="17">[17]</a>
+Ashby FG, Helie S. The Neurodynamics of Cognition: A Tutorial on Computational Cognitive Neuroscience. J Math Psychol. 2011;55(4):273-289. doi:10.1016/j.jmp.2011.04.003
+
+<a id="18">[18]</a>
+Koziol JA, Falls TJ, Schnitzer JE. Different ODE models of tumor growth can deliver similar results. BMC Cancer. 2020;20(1):226. Published 2020 Mar 17. doi:10.1186/s12885-020-6703-0
+
+<a id="19">[19]</a>
+Walcott S. Muscle activation described with a differential equation model for large ensembles of locally coupled molecular motors. Phys Rev E Stat Nonlin Soft Matter Phys. 2014;90(4):042717. doi:10.1103/PhysRevE.90.042717
+
+<a id="20">[20]</a>
+van den Bogert AJ, Blana D, Heinrich D. Implicit methods for efficient musculoskeletal simulation and optimal control. Procedia IUTAM. 2011;2(2011):297-316. doi:10.1016/j.piutam.2011.04.027
+
+<!---
 
 <a id="6">[6]</a>
 Piessens R, deDoncker-Kapenga E, Uberhuber C, Kahaner D. Quadpack: A Subroutine Package for Automatic Integration. Series in Computational Mathematics v.1. Berlin, Germany: Springer-Verlag; 1983. 515.43/Q1S 100394Z.
@@ -134,6 +196,8 @@ Dierckx P. Curve and Surface Fitting with Splines. Oxford, UK: Oxford University
 
 <a id="8">[8]</a>
 Martinsson P-G, Rokhlin V, Shkolnisky Y, Tygert M. ID: A Software Package for Low-Rank Approximation of Matrices via Interpolative Decompositions, Version 0.2. 2008.
+
+
 
 <a id="9">[9]</a>
 Boggs PT, Donaldson JR, Byrd RH, Schnabel RB. Algorithm 676: ODRPACK: Software for Weighted Orthogonal Distance Regression. ACM Trans Math Softw. 1989;15(4):348-364. doi:10.1145/76909.76913.
@@ -168,7 +232,7 @@ Zhang S, Jin J. Computation of Special Functions. Wiley; 1996. ISBN: 0-471-11963
 <a id="17">[17]</a>
 Genz A. MVNDST: Software for the Numerical Computation of Multivariate Normal Probabilities. 1998. Accessed November 28, 2023. Available from: https://www.sci.wsu.edu/math/faculty/genz/homepage.
 
-
+-->
 
 
 
