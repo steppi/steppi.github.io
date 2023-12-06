@@ -113,13 +113,16 @@ e.g. protein-protein interactions, gene regulatory networks [[35]](#35).
 
 
 
-#### __odrpack__: <small>orthogonal distance regression</small>
-Orthogonal distance regression is able to account for errors in both the predictor
-and response variables. Some biomedical applications include:
-- __Calibration of biomedical instruments__:
-- __Dose-response analys__:
-- __Pharmokinetic/Pharmodynamic Modeling__:
-- __Epidemiology__:
+#### __odrpack__: <small>Orthogonal distance regression</small>
+Orthogonal distance regression is designed to handle problems where there are
+measurement errors in the predictor variables. Ordinary least squares regression
+assumes the predictor variables are fixed. ODRPACK is a software package for
+weighted orthogonal distance regression [[36]](#36) which can handle linear and
+non-linear fitting functions. SciPy exposes ODRPACK through
+the [scipy.odr](https://docs.scipy.org/doc/scipy/reference/odr.html) module.
+Orthogonal distance regression has a range of biomedical applications, including
+calibration of biomedical instruments [[37]](#37), dose-response analysis [[38]](#38),
+and other noisy problems [[39]](#39).
 
 
 
@@ -256,7 +259,19 @@ Markovsky I. Low Rank Approximation: Algorithms, Implementation, Applications. S
 
 
 <a id="35">[35]</a>
-Li L-P, Wang Y-B, You Z-H, Li Y, An J-Y. PCLPred: A Bioinformatics Method for Predicting Protein–Protein Interactions by Combining Relevance Vector Machine Model with Low-Rank Matrix Approximation. International Journal of Molecular Sciences. 2018; 19(4):1029. https://doi.org/10.3390/ijms19041029 
+Li L-P, Wang Y-B, You Z-H, Li Y, An J-Y. PCLPred: A Bioinformatics Method for Predicting Protein–Protein Interactions by Combining Relevance Vector Machine Model with Low-Rank Matrix Approximation. International Journal of Molecular Sciences. 2018; 19(4):1029. https://doi.org/10.3390/ijms19041029
+
+<a id="36">[36]</a>
+Boggs PT, Donaldson JR, Byrd RH, Schnabel RB. Algorithm 676: ODRPACK: Software for Weighted Orthogonal Distance Regression. ACM Trans Math Softw. 1989;15(4):348-364. doi:10.1145/76909.76913.
+
+<a id="37">[37]</a>
+https://blog.minitab.com/en/orthogonal-regression-for-instrument-calibration
+
+<a id="38">[38]</a>
+Walsh L, Shore R, Azizova TV, Rühm W. On the choice of methodology for evaluating dose-rate effects on radiation-related cancer risks. Radiat Environ Biophys. 2021;60(3):493-500. doi:10.1007/s00411-021-00920-y
+
+<a id="39">[39]</a>
+Pallavi, Joshi S, Singh D, et al. Comprehensive Review of Orthogonal Regression and Its Applications in Different Domains. Arch Computat Methods Eng. 2022;29:4027-4047. doi:10.1007/s11831-022-09728-5.
 
 <!---
 
@@ -268,8 +283,7 @@ Li L-P, Wang Y-B, You Z-H, Li Y, An J-Y. PCLPred: A Bioinformatics Method for Pr
 
 
 
-<a id="9">[9]</a>
-Boggs PT, Donaldson JR, Byrd RH, Schnabel RB. Algorithm 676: ODRPACK: Software for Weighted Orthogonal Distance Regression. ACM Trans Math Softw. 1989;15(4):348-364. doi:10.1145/76909.76913.
+
 
 <a id="10">[10]</a>
 M. J. D. Powell. A direct search optimization method that models the objective and constraint functions by linear interpolation. In S. Gomez and J. P. Hennart, editors, Advances in Optimization and Numerical Analysis, pages 51–67, Dordrecht, NL, 1994. Springer.
