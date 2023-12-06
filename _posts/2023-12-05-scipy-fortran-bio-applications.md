@@ -69,7 +69,7 @@ quadpack provides a suite of mostly adaptive methods for numerical integration
 of one-dimensional functions [[21]](#21). Adaptive routines can adjust automatically
 to a problem, offering the ability to integrate a wide range of functions without
 needing to study their particular properties. Integration is a fundamental operation
-with applications too numerous to list. Some applications include 
+with applications too numerous to list.
 
 
 #### __fitpack__: <small>smoothing splines [[5]](#5)</small>
