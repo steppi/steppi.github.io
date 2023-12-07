@@ -127,6 +127,18 @@ and other noisy problems [[39]](#39).
 
 
 #### __cobyla__: <small>Derivative free constrained optimization</small>
+The Constrained Optimization By Linear Approximation (COBYLA) algorithm, developed
+by M.J.D Powell is a numerical optimization method for constrained problems where
+the derivative of the objective function is not known [[40]](#40). Such problems
+arise frequently in the biomedical sciences.
+
+Some recent biomedical applications of COBYLA include generation of realistic
+human anatomical models [[41]](#41), as part of a pipeline for identifying
+functionally relevant brain regions from functional magnetic resonance imaging
+data [[42]](#42), as part of a pipeline for removing artifacts in x-ray cone beam com-
+puted tomography images [[43]](#43), and for pre-operative planning for liver
+cryosurgery [[44]](#44).
+
 
 
 #### __L-BFGS-B and slsqp__: <small>Gradient-based constrained optimization</small>
@@ -273,6 +285,25 @@ Walsh L, Shore R, Azizova TV, Rühm W. On the choice of methodology for evaluati
 <a id="39">[39]</a>
 Pallavi, Joshi S, Singh D, et al. Comprehensive Review of Orthogonal Regression and Its Applications in Different Domains. Arch Computat Methods Eng. 2022;29:4027-4047. doi:10.1007/s11831-022-09728-5.
 
+<a id="40">[40]</a>
+M. J. D. Powell. A direct search optimization method that models the objective and constraint functions by linear interpolation. In S. Gomez and J. P. Hennart, editors, Advances in Optimization and Numerical Analysis, pages 51–67, Dordrecht, NL, 1994. Springer.
+
+
+<a id="41">[41]</a>
+Demirel, D, Yu, A, Baer-Cooper, S, Halic, T, Bayrak, C. Generative Anatomy Modeling Language (GAML). Int J Med Robotics Comput Assist Surg. 2017; 13:e1813. https://doi.org/10.1002/rcs.1813 
+
+<a id="42">[42]</a>
+Whiteman AS, Bartsch AJ, Kang J, Johnson TD. Bayesian inference for brain activity from functional magnetic resonance imaging collected at two spatial resolutions. Ann Appl Stat. 2022;16(4):2626-2647. doi:10.1214/22-AOAS1606.
+
+<a id="43">[43]</a>
+Würfl T, Hoffmann M, Aichert A, Maier AK, Maaß N, Dennerlein F. Calibration-free beam hardening reduction in x-ray CBCT using the epipolar consistency condition and physical constraints. Med Phys. 2019;46(11):e810-e822. doi:10.1002/mp.13625.
+
+<a id="44">[44]</a>
+Jaberzadeh A, Essert C. Pre-operative planning of multiple probes in three dimensions for liver cryosurgery: comparison of different optimization methods. Math Meth Appl Sci. 2016;39:4764-4772. doi:10.1002/mma.3548.
+
+
+
+
 <!---
 
 <a id="6">[6]</a>
@@ -286,7 +317,7 @@ Pallavi, Joshi S, Singh D, et al. Comprehensive Review of Orthogonal Regression 
 
 
 <a id="10">[10]</a>
-M. J. D. Powell. A direct search optimization method that models the objective and constraint functions by linear interpolation. In S. Gomez and J. P. Hennart, editors, Advances in Optimization and Numerical Analysis, pages 51–67, Dordrecht, NL, 1994. Springer.
+
 
 <a id="11">[11]</a>
 Morales JL, Nocedal J. Remark on Algorithm 778: L-BFGS-B, FORTRAN Routines for Large Scale Bound Constrained Optimization. ACM Trans Math Softw. 2011;38(1).
