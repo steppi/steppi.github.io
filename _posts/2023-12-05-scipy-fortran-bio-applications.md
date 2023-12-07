@@ -152,9 +152,9 @@ Broyden–Fletcher–Goldfarb–Shanno algorithm) [[47]](#47) and slsqp
 (sequential least squares programming) [[48]](#48) are quasi-Newton methods which
 generate and work with approximations of the gradient and Hessian (higher dimensional
 analog of the second derivative) to guide where the solver checks next. They differ
-in that L-BFGS-B allows only simple bound constraints like $$a \leq x_i \leq b$$
-while slsqp allows for more complicated linear and nonlinear equality and
-inequality constraints.
+in that L-BFGS-B, while faster and more memory efficient, allows only simple bound
+constraints like $$a \leq x_i \leq b$$ while slsqp allows for more complicated linear
+and nonlinear equality and inequality constraints.
 
 
 #### __minpack__: <small>nonlinear equations and least squares minimization</small>
