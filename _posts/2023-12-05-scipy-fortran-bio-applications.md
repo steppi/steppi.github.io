@@ -6,7 +6,7 @@ published: true
 
 *Hi CZI EOSS reviewers, if by chance you're already checking the references on
 the Improve sustainability of SciPy proposal, this article is still under
-construction and should be completed sometime midday December 6th.*
+construction and should be completed by tomorrow 12/8/2023.*
 
 
 
