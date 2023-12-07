@@ -4,9 +4,9 @@ title: "How are SciPy's Fortran libraries used in biomedicine?"
 published: true
 ---
 
-*Hi CZI EOSS reviewers, if by chance you're already checking the references on
-the Improve sustainability of SciPy proposal, this article is still under
-construction and should be completed by tomorrow 12/8/2023.*
+
+*This article is still under construction but should be completed in
+the next few days.*
 
 
 
@@ -27,7 +27,8 @@ modern subject experts to untangle.  It is consequently now mostly unmaintained.
 To serve as an aid in understanding how modernization and structural
 improvement of these libraries could benefit the biomedical sciences, we
 catalog the Fortran libraries wrapped by SciPy and list ways these tools are or
-could be applied to biomedical research and development.
+could be applied to biomedical research and development. This is just a cursory
+survey of applications, and is not intended to be exhaustive.
 
 
 
@@ -143,11 +144,22 @@ in x-ray cone beam computed tomography images [[45]](#45),
 and for pre-operative planning for liver cryosurgery [[46]](#46).
 
 
-
-#### __L-BFGS-B and slsqp__: <small>Gradient-based constrained optimization</small>
+#### __L-BFGS-B and slsqp__: <small>Gradient aware constrained optimization</small>
+The derivative or gradient gives information on how a function is changing at a
+given point. Optimization methods which take gradient information into account can
+converge more rapidly to better solutions for smooth functions. L-BFGS-B (Limited-memory
+Broyden–Fletcher–Goldfarb–Shanno algorithm) [[47]](#47) and slsqp
+(sequential least squares programming) [[48]](#48) are quasi-Newton methods which
+generate and work with approximations of the gradient and Hessian (higher dimensional
+analog of the second derivative) to guide where the solver checks next. They differ
+in that L-BFGS-B allows only simple bound constraints like $$a \leq x_i \leq b$$
+while slsqp allows for more complicated linear and nonlinear equality and
+inequality constraints.
 
 
 #### __minpack__: <small>nonlinear equations and least squares minimization</small>
+Curve fitting, and nonlinear regression modeling. Fundamental component used in many
+important algorithms.
 
 
 #### __ARPACK and PROPACK__: <small>sparse linear algebra</small>
@@ -156,10 +168,15 @@ large, sparse matrices (where most elements are zero) which are common in biomed
 
 
 #### __AMOS, cdflib, and specfun__: <small>special functions</small>
+AMOS computes Bessel functions, cdflib inverse cumulative distribution functions (CDFs)
+of common statistical distributions, and specfun is used in SciPy for special
+functions of a complex variable. Inverse CDFs have clear statistical applications. Bessel
+functions and other special functions of mathematical physics have uses in biophysical
+modeling.
 
 
 #### __mvndist__: <small>multivariate normal distribution function</small>
-
+Important for statistics.
 
 
 
