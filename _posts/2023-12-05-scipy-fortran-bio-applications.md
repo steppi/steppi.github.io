@@ -130,14 +130,17 @@ and other noisy problems [[39]](#39).
 The Constrained Optimization By Linear Approximation (COBYLA) algorithm, developed
 by M.J.D Powell is a numerical optimization method for constrained problems where
 the derivative of the objective function is not known [[40]](#40). Such problems
-arise frequently in the biomedical sciences.
+arise when trying to optimize a quantity which is noisy and/or difficult to compute.
+A classic example is molecular design [[41]](#41), for instance trying to optimize
+the binding affinity of a drug to a target under physical and biological constraints
+[[42]](#42).
 
-Some recent biomedical applications of COBYLA include generation of realistic
-human anatomical models [[41]](#41), as part of a pipeline for identifying
-functionally relevant brain regions from functional magnetic resonance imaging
-data [[42]](#42), as part of a pipeline for removing artifacts in x-ray cone beam com-
-puted tomography images [[43]](#43), and for pre-operative planning for liver
-cryosurgery [[44]](#44).
+Some applications from recent biomedical articles that cite COBYLA specifically
+include generation of realistic human anatomical models [[43]](#43), as part of a
+pipeline for identifying functionally relevant brain regions from functional magnetic
+resonance imaging data [[44]](#44), as part of a pipeline for removing artifacts
+in x-ray cone beam computed tomography images [[45]](#45),
+and for pre-operative planning for liver cryosurgery [[46]](#46).
 
 
 
@@ -288,11 +291,17 @@ Pallavi, Joshi S, Singh D, et al. Comprehensive Review of Orthogonal Regression 
 <a id="40">[40]</a>
 M. J. D. Powell. A direct search optimization method that models the objective and constraint functions by linear interpolation. In S. Gomez and J. P. Hennart, editors, Advances in Optimization and Numerical Analysis, pages 51–67, Dordrecht, NL, 1994. Springer.
 
-
 <a id="41">[41]</a>
-Demirel, D, Yu, A, Baer-Cooper, S, Halic, T, Bayrak, C. Generative Anatomy Modeling Language (GAML). Int J Med Robotics Comput Assist Surg. 2017; 13:e1813. https://doi.org/10.1002/rcs.1813 
+Sun Y, Sahinidis N, Sundaram A, Cheon MS. Derivative-free optimization for chemical product design. Curr Opin Chem Eng. 2020;27:98-106. doi:10.1016/j.coche.2019.11.006.
 
 <a id="42">[42]</a>
+Boitreaud J, Mallet V, Oliver C, Waldispühl J. OptiMol: Optimization of Binding Affinities in Chemical Space for Drug Discovery. J Chem Inf Model. 2020;60(12):5658-5666. doi:10.1021/acs.jcim.0c00833.
+
+
+<a id="43">[43]</a>
+Demirel, D, Yu, A, Baer-Cooper, S, Halic, T, Bayrak, C. Generative Anatomy Modeling Language (GAML). Int J Med Robotics Comput Assist Surg. 2017; 13:e1813. https://doi.org/10.1002/rcs.1813 
+
+<a id="44">[44]</a>
 Whiteman AS, Bartsch AJ, Kang J, Johnson TD. Bayesian inference for brain activity from functional magnetic resonance imaging collected at two spatial resolutions. Ann Appl Stat. 2022;16(4):2626-2647. doi:10.1214/22-AOAS1606.
 
 <a id="43">[43]</a>
