@@ -149,12 +149,22 @@ generate and work with approximations of the gradient and Hessian (higher dimens
 analog of the second derivative) to guide where the solver checks next. They differ
 in that L-BFGS-B, while faster and more memory efficient, allows only simple bound
 constraints like $$a \leq x_i \leq b$$ while slsqp allows for more complicated linear
-and nonlinear equality and inequality constraints.
+and nonlinear equality and inequality constraints. Recent applications from papers
+citing L-BFGS-B include aperture shape optimization for radiation therapy [[49]](#49),
+planning of non-pharmaceutical interventions for the COVID-19 pandemic while accounting
+for social end economic costs of lockdown measures [[50]](#50), and optimal
+control problems related to bioproduction, the production of clinically and
+commercially important biological products and chemicals from living cells
+[[51]](#51). Recent applications from papers citing slsqp include estimating gene
+regulatory networks from time series data [[52]](#52), predicting the distribution
+of fitness effects of new mutations [[53]](#53), and causal inference of the impact
+of the microbiome on disease states [[54]](#54).
+
 
 
 #### __minpack__: <small>nonlinear equations and least squares minimization</small>
 minpack is a collection of Fortran subroutines for solving systems of nonlinear
-equations and for solving linear and nonlinear least squares fitting problems [[49]](#49).
+equations and for solving linear and nonlinear least squares fitting problems [[55]](#55).
 
 
 
@@ -331,9 +341,31 @@ Morales JL, Nocedal J. Remark on Algorithm 778: L-BFGS-B, FORTRAN Routines for L
 <a id="48">[48]</a>
 Kraft D. A Software Package for Sequential Quadratic Programming. DFVLR-FB 88-28. 1988.
 
-
 <a id="49">[49]</a>
+Zhang LY, Gui ZG, Zhang PC, et al. Aperture shape optimization in intensity-modulated radiation therapy planning. NUCL SCI TECH. 2023;34:140. doi:10.1007/s41365-023-01300-5
+
+
+
+<a id="50">[50]</a>
+Siradjuddin I, Agiska IN, Ningrum BC, et al. A Non-Pharmaceutical Intervention Policy for Mitigating COVID-19 Pandemic Using Predictive Control Scheme and SEIR Compartmental Model. Paper presented at: 10th International Conference on Information Technology, Computer, and Electrical Engineering (ICITACEE); 2023; Semarang, Indonesia. doi:10.1109/ICITACEE58587.2023.10277389.
+
+<a id="51">[51]</a>
+Lunz D, Bonnans JF, Ruess J. Optimal control of bioproduction in the presence of population heterogeneity. J Math Biol. 2023;86(3):43. Published 2023 Feb 6. doi:10.1007/s00285-023-01876-x
+
+<a id="52">[52]</a>
+Hoffmann M, Fröhner C, Noé F. Reactive SINDy: Discovering Governing Reactions from Concentration Data. J Chem Phys. 2019;150(2):025101. Published January 14, 2019. doi:10.1063/1.5054310.
+
+<a id="53">[53]</a>
+Kim BY, Huber CD, Lohmueller KE. Inference of the Distribution of Selection Coefficients for New Nonsynonymous Mutations Using Large Samples. Genetics. 2017;206(1):345-361. Published May 1, 2017. doi:10.1534/genetics.116.197145.
+
+<a id="54">[54]</a>
+Wang C, Hu J, Blaser MJ, Li H. Estimating and Testing the Microbial Causal Mediation Effect with High-Dimensional and Compositional Microbiome Data. Bioinformatics. 2020;36(2):347-355. doi:10.1093/bioinformatics/btz565.
+
+
+<a id="49">[55]</a>
 Moré JJ, Garbow BS, Hillstrom KE. User Guide for MINPACK-1. Argonne, IL: Argonne National Laboratory; 1980. Report ANL-80-74.
+
+
 
 
 <!---
