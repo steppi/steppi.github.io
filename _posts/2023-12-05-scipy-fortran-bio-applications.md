@@ -5,11 +5,6 @@ published: true
 ---
 
 
-*This article is still under construction but should be completed in
-the next few days.*
-
-
-
 ### Introduction
 
 SciPy is an open source library for mathematics, science, and engineering
@@ -158,8 +153,11 @@ and nonlinear equality and inequality constraints.
 
 
 #### __minpack__: <small>nonlinear equations and least squares minimization</small>
-Curve fitting, and nonlinear regression modeling. Fundamental component used in many
-important algorithms.
+minpack is a collection of Fortran subroutines for solving systems of nonlinear
+equations and for solving linear and nonlinear least squares fitting problems [[49]](#49).
+
+
+
 
 
 #### __ARPACK and PROPACK__: <small>sparse linear algebra</small>
@@ -321,13 +319,21 @@ Demirel, D, Yu, A, Baer-Cooper, S, Halic, T, Bayrak, C. Generative Anatomy Model
 <a id="44">[44]</a>
 Whiteman AS, Bartsch AJ, Kang J, Johnson TD. Bayesian inference for brain activity from functional magnetic resonance imaging collected at two spatial resolutions. Ann Appl Stat. 2022;16(4):2626-2647. doi:10.1214/22-AOAS1606.
 
-<a id="43">[43]</a>
+<a id="45">[45]</a>
 Würfl T, Hoffmann M, Aichert A, Maier AK, Maaß N, Dennerlein F. Calibration-free beam hardening reduction in x-ray CBCT using the epipolar consistency condition and physical constraints. Med Phys. 2019;46(11):e810-e822. doi:10.1002/mp.13625.
 
-<a id="44">[44]</a>
+<a id="46">[46]</a>
 Jaberzadeh A, Essert C. Pre-operative planning of multiple probes in three dimensions for liver cryosurgery: comparison of different optimization methods. Math Meth Appl Sci. 2016;39:4764-4772. doi:10.1002/mma.3548.
 
+<a id="47">[47]</a>
+Morales JL, Nocedal J. Remark on Algorithm 778: L-BFGS-B, FORTRAN Routines for Large Scale Bound Constrained Optimization. ACM Trans Math Softw. 2011;38(1).
 
+<a id="48">[48]</a>
+Kraft D. A Software Package for Sequential Quadratic Programming. DFVLR-FB 88-28. 1988.
+
+
+<a id="49">[49]</a>
+Moré JJ, Garbow BS, Hillstrom KE. User Guide for MINPACK-1. Argonne, IL: Argonne National Laboratory; 1980. Report ANL-80-74.
 
 
 <!---
@@ -345,14 +351,9 @@ Jaberzadeh A, Essert C. Pre-operative planning of multiple probes in three dimen
 <a id="10">[10]</a>
 
 
-<a id="11">[11]</a>
-Morales JL, Nocedal J. Remark on Algorithm 778: L-BFGS-B, FORTRAN Routines for Large Scale Bound Constrained Optimization. ACM Trans Math Softw. 2011;38(1).
 
-<a id="12">[12]</a>
-Kraft D. A Software Package for Sequential Quadratic Programming. DFVLR-FB 88-28. 1988.
 
-<a id="13">[13]</a>
-Moré JJ, Garbow BS, Hillstrom KE. User Guide for MINPACK-1. Argonne, IL: Argonne National Laboratory; 1980. Report ANL-80-74.
+
 
 <a id="14">[14]</a>
 Lehoucq R, Maschhoff K, Sorensen D, et al. ARPACK-NG: Large Scale Eigenvalue Problem Solver. Astrophysics Source Code Library. 2023. Ascl:2306.049.
