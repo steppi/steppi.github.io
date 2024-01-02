@@ -6,6 +6,9 @@ published: true
 
 
 ### Introduction
+This article is intended as supplementary information for a CZI EOSS Cycle 6
+grant proposal asking for funding to support efforts to modernize SciPy's
+aging Fortran dependencies.
 
 SciPy is an open source library for mathematics, science, and engineering
 [[1]](#1).  It provides user-friendly APIs to a wide range of tools for
@@ -175,26 +178,42 @@ from data in an ODE model of cellular spread of HIV-1 [[58](#58).
 
 
 #### __ARPACK and PROPACK__: <small>sparse linear algebra</small>
-Sparse eigenvalue and singular value decomposition problems are essential for dealing with
-large, sparse matrices (where most elements are zero) which are common in biomedical data.
+ARPACK is a numerical library for solving eigenvalue problems for large sparse
+or structured matrices [[59]](#59). Similarly, PROPACK is a library for singular value decomposition problems for large sparse or structured matrices [[60]](#60). Sparse eigenvalue and
+singular value decomposition problems are essential for dealing with large,
+sparse matrices (where most elements are zero) which are common in biomedical data.
+Recent applications from papers citing ARPACK include identification of genetic loci
+associated with risk of major depression [[61]](#61), coping with uncertainty when
+making inferences from low depth next generation sequencing data [[62]](#62), and
+establishing a link between clinical outcome of cancer and the immune contexture
+[[63]](#63). Recent applications from papers citing PROPACK include medical imaging
+resolution enhancement [[64]](#64), assembly of haplotypes (clusters of genes which
+tend to vary together) from next generation sequence data [[65]](#65), and dimensionality
+reduction of single cell RNASeq data [[66]](#66).
 
 
 #### __AMOS, cdflib, and specfun__: <small>special functions</small>
-AMOS computes Bessel functions, cdflib inverse cumulative distribution functions (CDFs)
-of common statistical distributions, and specfun is used in SciPy for special
-functions of a complex variable. Inverse CDFs have clear statistical applications. Bessel
-functions and other special functions of mathematical physics have uses in biophysical
-modeling.
+AMOS computes Bessel functions [[67]](#67), cdflib inverse cumulative
+distribution functions (CDFs) of common statistical distributions [[68]](#68),
+and specfun [[69]](#69) is used in SciPy for special functions of a complex
+variable. Inverse CDFs have clear statistical applications. Bessel functions and
+other special functions of mathematical physics appear frequently in biophysical
+modeling. These are fundamental functions with a wide range of applications. The
+Fortran implementations SciPy relies on have a host of numerical issues, both
+subtle and obvious, as can be seen by searching for issues tagged with `special`
+on the SciPy GitHub repo.
 
 
 #### __mvndist__: <small>multivariate normal distribution function</small>
-Important for statistics.
-
+Multivariate normal probability computation software from Alan Genz [[70]](#70). The
+normal, or Gaussian distribution is of critical importance in statistics, it maximizes
+the entropy among distributions with a given mean and covariance matrix and due to the
+Central Limit Theorem, its presence is ubitiquous.
 
 
 ### References
 <a id="1">[1]</a>
-Pauli Virtanen, Ralf Gommers, Travis E. Oliphant, Matt Haberland, Tyler Reddy, David Cournapeau, Evgeni Burovski, Pearu Peterson, Warren Weckesser, Jonathan Bright, Stéfan J. van der Walt, Matthew Brett, Joshua Wilson, K. Jarrod Millman, Nikolay Mayorov, Andrew R. J. Nelson, Eric Jones, Robert Kern, Eric Larson, CJ Carey, İlhan Polat, Yu Feng, Eric W. Moore, Jake VanderPlas, Denis Laxalde, Josef Perktold, Robert Cimrman, Ian Henriksen, E.A. Quintero, Charles R Harris, Anne M. Archibald, Antônio H. Ribeiro, Fabian Pedregosa, Paul van Mulbregt, and SciPy 1.0 Contributors. (2020) SciPy 1.0: Fundamental Algorithms for Scientific Computing in Python. Nature Methods, 17(3), 261-272.
+Pauli Virtanen, Ralf Gommers, Travis E. Oliphant, Matt Haberland, Tyler Reddy, David Cournapeau, Evgeni Burovski, Pearu Peterson, Warren Weckesser, Jonathan Bright, Stéfan J. van der Walt, Matthew Brett, Joshua Wilson, K. Jarrod Millman, Nikolay Mayorov, Andrew R. J. Nelson, Eric Jones, Robert Kern, Eric Larson, CJ Carey, İlhan Polat, Yu Feng, Eric W. Moore, Jake VanderPlas, Denis Laxalde, Josef Perktold, Robert Cimrman, Ian Henriksen, E.A. Quintero, Charles R Harris, Anne M. Archibald, Antônio H. Ribeiro, Fabian Pedregosa, Paul van Mulbregt, and SciPy 1.0 Contributors. (2020) SciPy 1.0: Fundamental Algorithms for Scientific Computing in Python. Nature Methods, 17(3), 261-272. 
 
 
 <a id="2">[2]</a>
@@ -349,7 +368,6 @@ Kraft D. A Software Package for Sequential Quadratic Programming. DFVLR-FB 88-28
 Zhang LY, Gui ZG, Zhang PC, et al. Aperture shape optimization in intensity-modulated radiation therapy planning. NUCL SCI TECH. 2023;34:140. doi:10.1007/s41365-023-01300-5
 
 
-
 <a id="50">[50]</a>
 Siradjuddin I, Agiska IN, Ningrum BC, et al. A Non-Pharmaceutical Intervention Policy for Mitigating COVID-19 Pandemic Using Predictive Control Scheme and SEIR Compartmental Model. Paper presented at: 10th International Conference on Information Technology, Computer, and Electrical Engineering (ICITACEE); 2023; Semarang, Indonesia. doi:10.1109/ICITACEE58587.2023.10277389.
 
@@ -378,46 +396,43 @@ Leiserson MDM, Reyna MA, Raphael BJ. A Weighted Exact Test for Mutually Exclusiv
 <a id="58">[58]</a>
 Hataye JM, Casazza JP, Best K, Liang CJ, Immonen TT, Ambrozak DR, Darko S, Henry AR, Laboune F, Maldarelli F, Douek DC, Hengartner NW, Yamamoto T, Keele BF, Perelson AS, Koup RA. Principles Governing Establishment versus Collapse of HIV-1 Cellular Spread. Cell Host Microbe. 2019;26(6):748-763.e20. doi:10.1016/j.chom.2019.10.006
 
-
-<!---
-
-<a id="6">[6]</a>
-
-
-
-
-
-
-
-
-
-<a id="10">[10]</a>
-
-
-
-
-
-
-<a id="14">[14]</a>
+<a id="59">[59]</a>
 Lehoucq R, Maschhoff K, Sorensen D, et al. ARPACK-NG: Large Scale Eigenvalue Problem Solver. Astrophysics Source Code Library. 2023. Ascl:2306.049.
 
-<a id="15">[15]</a>
+<a id="60">[60]</a>
 Larsen RM. Lanczos Bidiagonalization with Partial Reorthogonalization for Large Sparse SVD and Linear Least Squares Calculations. Tech Rep. Computer Science Department, Aarhus University; August 1998.
 
-<a id="14">[14]</a>
+<a id="61">[61]</a>
+Hyde C, Nagle M, Tian C, et al. Identification of 15 Genetic Loci Associated with Risk of Major Depression in Individuals of European Descent. Nat Genet. 2016;48:1031–1036. doi:10.1038/ng.3623
+
+<a id="62">[62]</a>
+Meisner J, Albrechtsen A. Inferring Population Structure and Admixture Proportions in Low-Depth NGS Data. Genetics. 2018;210(2):719-731. doi:10.1534/genetics.118.301336
+
+
+<a id="63">[63]</a>
+Foerster F, Hess M, Gerhold-Ay A, et al. The Immune Contexture of Hepatocellular Carcinoma Predicts Clinical Outcome. Sci Rep. 2018;8:5351. doi:10.1038/s41598-018-21937-2
+
+<a id="64">[64]</a>
+Liu H, Guo Q, Wang G, et al. Medical Image Resolution Enhancement for Healthcare Using Nonlocal Self-Similarity and Low-Rank Prior. Multimed Tools Appl. 2019;78:9033-9050. doi:10.1007/s11042-017-5277-6
+
+<a id="65">[65]</a>
+Hashemi A, Zhu B, Vikalo H. Sparse Tensor Decomposition for Haplotype Assembly of Diploids and Polyploids. BMC Genomics. 2018;19(Suppl 4):191. doi:10.1186/s12864-018-4551-y
+
+<a id="66">[66]</a>
+Linderman GC. Dimensionality Reduction of Single-Cell RNA-Seq Data. In: Picardi E, ed. RNA Bioinformatics. Methods in Molecular Biology; vol 2284. New York, NY: Humana; 2021. doi:10.1007/978-1-0716-1307-8_18
+
+
+<a id="67">[67]</a>
 Amos DE. Algorithm 644: A Portable Package for Bessel Functions of a Complex Argument and Nonnegative Order. ACM Trans Math Softw. 1986;12(3):265-273. doi:10.1145/7921.214331.
 
-<a id="15">[15]</a>
+<a id="68">[68]</a>
 Brown B, Lovato J, Russell K. CDFLIB: Library of Fortran Routines for Cumulative Distribution Functions, Inverses, and Other Parameters. February 1994.
 
-<a id="16">[16]</a>
+<a id="69">[69]</a>
 Zhang S, Jin J. Computation of Special Functions. Wiley; 1996. ISBN: 0-471-11963-6. LC: QA351.C45.
 
-<a id="17">[17]</a>
+<a id="70">[70]</a>
 Genz A. MVNDST: Software for the Numerical Computation of Multivariate Normal Probabilities. 1998. Accessed November 28, 2023. Available from: https://www.sci.wsu.edu/math/faculty/genz/homepage.
-
--->
-
 
 
 
