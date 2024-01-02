@@ -164,9 +164,13 @@ of the microbiome on disease states [[54]](#54).
 
 #### __minpack__: <small>nonlinear equations and least squares minimization</small>
 minpack is a collection of Fortran subroutines for solving systems of nonlinear
-equations and for solving linear and nonlinear least squares fitting problems [[55]](#55).
-
-
+equations and for solving linear and nonlinear least squares fitting problems
+[[55]](#55).  Such problems are of fundamental importance in statistics and mathematical
+modeling. A small sample of applications from papers citing Minpack include
+the Tinker 8 library for molecular design and simulation, where nonlinear least
+squares problems appear for local search [[56]](#56), a weighted exact-test for
+mutually exclusive mutations in cancer [[57]](#57), and determining parameters
+from data in an ODE model of cellular spread of HIV-1 [[58](#58).
 
 
 
@@ -362,10 +366,17 @@ Kim BY, Huber CD, Lohmueller KE. Inference of the Distribution of Selection Coef
 Wang C, Hu J, Blaser MJ, Li H. Estimating and Testing the Microbial Causal Mediation Effect with High-Dimensional and Compositional Microbiome Data. Bioinformatics. 2020;36(2):347-355. doi:10.1093/bioinformatics/btz565.
 
 
-<a id="49">[55]</a>
+<a id="55">[55]</a>
 Moré JJ, Garbow BS, Hillstrom KE. User Guide for MINPACK-1. Argonne, IL: Argonne National Laboratory; 1980. Report ANL-80-74.
 
+<a id="56">[56]</a>
+Rackers JA, Wang Z, Lu C, Laury ML, Lagardère L, Schnieders MJ, Piquemal J-P, Ren P, Ponder JW. Tinker 8: Software Tools for Molecular Design. J Chem Theory Comput. 2018;14(10):5273-5289. doi:10.1021/acs.jctc.8b00529
 
+<a id="57">[57]</a>
+Leiserson MDM, Reyna MA, Raphael BJ. A Weighted Exact Test for Mutually Exclusive Mutations in Cancer. Bioinformatics. 2016;32(17):i736-i745. doi:10.1093/bioinformatics/btw462
+
+<a id="58">[58]</a>
+Hataye JM, Casazza JP, Best K, Liang CJ, Immonen TT, Ambrozak DR, Darko S, Henry AR, Laboune F, Maldarelli F, Douek DC, Hengartner NW, Yamamoto T, Keele BF, Perelson AS, Koup RA. Principles Governing Establishment versus Collapse of HIV-1 Cellular Spread. Cell Host Microbe. 2019;26(6):748-763.e20. doi:10.1016/j.chom.2019.10.006
 
 
 <!---
