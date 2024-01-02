@@ -8,26 +8,28 @@ published: true
 ### Introduction
 This article is intended as supplementary information for a CZI EOSS Cycle 6
 grant proposal asking for funding to support efforts to modernize SciPy's
-aging Fortran dependencies.
+aging Fortran dependencies. There are myriad reasons why this effort would
+vastly improve the health of SciPy as a whole, but the grant proposal did
+not go into just how widely applicable the tools provided by this Fortran
+code are in the biomedical sciences.
 
-SciPy is an open source library for mathematics, science, and engineering
-[[1]](#1).  It provides user-friendly APIs to a wide range of tools for
-statistics, optimization, numerical integration, linear algebra, Fourier
-transforms, signal and image processing, solutions of ordinary differential
-equations, and more. SciPy owes much of its success to wrappers around venerable
-scientific computing libraries that were posted on NETLIB [[2]](#2): a
-repository of freely available software, documents, and databases of interest to
-the numerical, scientific computing, and other communities [[3]](#3) created by
-Jack Dongarra of Argonne National Laboratory and Eric Gross of Bell Labs in the
-1980s [[4]](#4). Much of this software is written in Fortran 77, with a
-monolithic and unstructured __GOTO__ laden style which can be difficult for even
-modern subject experts to untangle.  It is consequently now mostly unmaintained.
-To serve as an aid in understanding how modernization and structural
-improvement of these libraries could benefit the biomedical sciences, we
-catalog the Fortran libraries wrapped by SciPy and list ways these tools are or
-could be applied to biomedical research and development. This is just a cursory
-survey of applications, and is not intended to be exhaustive.
-
+First, a short summary. SciPy is an open source library for mathematics,
+science, and engineering [[1]](#1).  It provides user-friendly APIs to a wide
+range of tools for statistics, optimization, numerical integration, linear
+algebra, Fourier transforms, signal and image processing, solutions of ordinary
+differential equations, and more. SciPy owes much of its success to wrappers
+around venerable scientific computing libraries that were posted on NETLIB
+[[2]](#2): a repository of freely available software, documents, and databases
+of interest to the numerical, scientific computing, and other communities
+[[3]](#3) created by Jack Dongarra of Argonne National Laboratory and Eric Gross
+of Bell Labs in the 1980s [[4]](#4). Much of this software is written in Fortran
+77, with a monolithic and unstructured __GOTO__ laden style which can be
+difficult for even modern subject experts to untangle.  It is consequently now
+mostly unmaintained.  To serve as an aid in understanding how modernization and
+structural improvement of these libraries could benefit the biomedical sciences,
+we catalog the Fortran libraries wrapped by SciPy and list ways these tools are
+or could be applied to biomedical research and development. This is just a
+cursory survey of applications, and is not intended to be exhaustive.
 
 
 #### __ODEPACK and dop__: <small>Systems of ordinary differential equations</small>
@@ -209,6 +211,12 @@ Multivariate normal probability computation software from Alan Genz [[70]](#70).
 normal, or Gaussian distribution is of critical importance in statistics, it maximizes
 the entropy among distributions with a given mean and covariance matrix and due to the
 Central Limit Theorem, its presence within the sciences is ubitiquous.
+
+### Conclusion
+Even after a relatively short search, I've managed to unearth a vast number of applications
+of these libraries within biomedicine. On the way, I've found much more that I simply do
+not have time to condense and write down. My impression is that an exhaustive list at
+a similar level of detail could fill a book length tome.
 
 
 ### References
@@ -433,6 +441,3 @@ Zhang S, Jin J. Computation of Special Functions. Wiley; 1996. ISBN: 0-471-11963
 
 <a id="70">[70]</a>
 Genz A. MVNDST: Software for the Numerical Computation of Multivariate Normal Probabilities. 1998. Accessed November 28, 2023. Available from: https://www.sci.wsu.edu/math/faculty/genz/homepage.
-
-
-
