@@ -208,7 +208,7 @@ on the SciPy GitHub repo.
 Multivariate normal probability computation software from Alan Genz [[70]](#70). The
 normal, or Gaussian distribution is of critical importance in statistics, it maximizes
 the entropy among distributions with a given mean and covariance matrix and due to the
-Central Limit Theorem, its presence is ubitiquous.
+Central Limit Theorem, its presence within the sciences is ubitiquous.
 
 
 ### References
