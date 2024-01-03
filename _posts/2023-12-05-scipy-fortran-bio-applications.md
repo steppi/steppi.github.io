@@ -214,9 +214,10 @@ Central Limit Theorem, its presence within the sciences is ubitiquous.
 
 ### Conclusion
 Even after a relatively short search, I've managed to unearth a vast number of applications
-of these libraries within biomedicine. On the way, I've found much more that I simply do
+of these libraries to biomedicine. On the way, I've found much more that I simply do
 not have time to condense and write down. My impression is that an exhaustive list at
-a similar level of detail could fill a book length tome.
+a similar level of detail could fill a book length tome. Let no one doubt that structural
+improvements to these libraries would be of strong benefit to biomedical research.
 
 
 ### References
