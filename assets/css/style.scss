@@ -4,4 +4,22 @@
 
 @import
   "minima/skins/{{ site.minima.skin | default: 'classic' }}",
-  "minima/initialize";
+"minima/initialize";
+
+a {
+  color: #000;
+  text-decoration: none;
+
+  &:visited {
+    color: #000;
+  }
+
+  &:hover {
+    color: #000;
+    text-decoration: underline;
+  }
+}
+
+.svg-icon {
+  fill: #000;
+}
